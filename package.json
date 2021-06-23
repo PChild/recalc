@@ -98,6 +98,7 @@
     "prompts": "^2.4.1",
     "source-map-explorer": "^2.5.2",
     "ts-jest": "^27.0.3",
+    "ts-migrate": "^0.1.19",
     "yargs": "^17.0.1"
   },
   "engines": {
