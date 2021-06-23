@@ -3,18 +3,28 @@ import { toolTipForIds } from "common/components/tooltips";
 import Measurement from "common/models/Measurement";
 import { cleanNumberInput } from "common/tooling/io";
 import { uuid } from "common/tooling/util";
-import propTypes from "prop-types";
 import { useEffect, useState } from "react";
 
-export function UnlabeledQtyInput(props) {
+type UnlabeledQtyInputProps = {
+    stateHook?: any[];
+    choices?: string[];
+    inputId?: string;
+    selectId?: string;
+    disabled?: boolean;
+};
+
+export function UnlabeledQtyInput(props: UnlabeledQtyInputProps) {
+  // @ts-expect-error ts-migrate(2461) FIXME: Type 'any[] | undefined' is not an array type.
   const [qty, setQty] = props.stateHook;
   const [magnitude, setMagnitude] = useState(qty.scalar);
   const [unit, setUnit] = useState(qty.units());
 
   if (
     props.disabled &&
+    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     props.stateHook[0].scalar.toString() !== magnitude.toString()
   ) {
+    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     setMagnitude(props.stateHook[0].scalar);
   }
 
@@ -23,6 +33,7 @@ export function UnlabeledQtyInput(props) {
   }, [magnitude, unit]);
 
   return (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <UnlabeledTypedNumberInput
       magnitudeStateHook={[magnitude, setMagnitude]}
       selectStateHook={[unit, setUnit]}
@@ -34,15 +45,19 @@ export function UnlabeledQtyInput(props) {
   );
 }
 
-UnlabeledQtyInput.propTypes = {
-  stateHook: propTypes.arrayOf(propTypes.any, propTypes.func),
-  choices: propTypes.arrayOf(propTypes.string),
-  inputId: propTypes.string,
-  selectId: propTypes.string,
-  disabled: propTypes.bool,
+type LabeledQtyInputProps = {
+    stateHook?: any[];
+    label?: string;
+    choices?: string[];
+    abbr?: string;
+    wideLabel?: boolean;
+    inputId?: string;
+    selectId?: string;
+    disabled?: boolean;
+    labelFg?: number;
 };
 
-export function LabeledQtyInput(props) {
+export function LabeledQtyInput(props: LabeledQtyInputProps) {
   props = {
     ...props,
     inputId: props.inputId || uuid(),
@@ -50,11 +65,15 @@ export function LabeledQtyInput(props) {
   };
 
   return (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <div
       className={"field is-horizontal" + (props.wideLabel ? " wide-label" : "")}
     >
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <div className={`field-label is-normal fg-${props.labelFg}`}>
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <label className="label" htmlFor={props.inputId}>
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <span
             className="has-tooltip-right"
             data-tooltip={toolTipForIds(props.inputId, props.abbr, props.label)}
@@ -63,21 +82,11 @@ export function LabeledQtyInput(props) {
           </span>
         </label>
       </div>
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <div className="field-body">
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <UnlabeledQtyInput {...props} />
       </div>
     </div>
   );
 }
-
-LabeledQtyInput.propTypes = {
-  stateHook: propTypes.arrayOf(propTypes.any, propTypes.func),
-  label: propTypes.string,
-  choices: propTypes.arrayOf(propTypes.string),
-  abbr: propTypes.string,
-  wideLabel: propTypes.bool,
-  inputId: propTypes.string,
-  selectId: propTypes.string,
-  disabled: propTypes.bool,
-  labelFg: propTypes.number,
-};

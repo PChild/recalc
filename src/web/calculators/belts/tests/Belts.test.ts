@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Belts' was resolved to '/home/justin/co... Remove this comment to see the full error message
 import Belts from "../Belts";
 
 const inputs = {
@@ -48,6 +49,7 @@ describe("Belts calculator", () => {
   test("Changing pitch changes outputs", () => {
     render(<Belts />);
 
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     userEvent.clear(screen.getByLabelText("Pitch"));
 
     expect(screen.getByTestId("smallerCenterDistanceInput")).toHaveValue(
@@ -76,6 +78,7 @@ describe("Belts calculator", () => {
     "%p Clearing any primary input results in base output state",
     (getInput) => {
       render(<Belts />);
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       userEvent.clear(getInput());
 
       expect(outputs.smallerCenterDistance()).toHaveValue("0.0000");
@@ -88,6 +91,7 @@ describe("Belts calculator", () => {
   test("Should see initial state", () => {
     render(<Belts />);
 
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     expect(inputs.pitch()).toHaveValue(3);
     expect(inputs.desiredCenter()).toHaveValue(5);
     expect(secondaryInputs.extraCenter()).toHaveValue(0);
@@ -111,8 +115,10 @@ describe("Belts calculator", () => {
   });
 
   test("Initial state should change with query string", () => {
+    // @ts-expect-error ts-migrate(2790) FIXME: The operand of a 'delete' operator must be optiona... Remove this comment to see the full error message
     delete global.window.location;
     global.window = Object.create(window);
+    // @ts-expect-error ts-migrate(2740) FIXME: Type '{ search: string; }' is missing the followin... Remove this comment to see the full error message
     global.window.location = {
       search:
         "?customBeltTeeth=125&desiredCenter=%7B%22s%22%3A18%2C%22u%22%3A%22in%22%7D&" +
@@ -123,6 +129,7 @@ describe("Belts calculator", () => {
 
     render(<Belts />);
 
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     expect(inputs.pitch()).toHaveValue(5);
     expect(inputs.desiredCenter()).toHaveValue(18);
     expect(inputs.p1Teeth()).toHaveValue(32);
@@ -145,8 +152,10 @@ describe("Belts calculator", () => {
   });
 
   test("Initial state should change with query string with custom belt", () => {
+    // @ts-expect-error ts-migrate(2790) FIXME: The operand of a 'delete' operator must be optiona... Remove this comment to see the full error message
     delete global.window.location;
     global.window = Object.create(window);
+    // @ts-expect-error ts-migrate(2740) FIXME: Type '{ search: string; }' is missing the followin... Remove this comment to see the full error message
     global.window.location = {
       search:
         "?customBeltTeeth=340&desiredCenter=%7B%22s%22%3A5%2C%22u%22%3A%22in%22%7D&" +
@@ -157,6 +166,7 @@ describe("Belts calculator", () => {
 
     render(<Belts />);
 
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     expect(inputs.pitch()).toHaveValue(7);
     expect(inputs.desiredCenter()).toHaveValue(5);
     expect(inputs.desiredCenter()).toBeDisabled();

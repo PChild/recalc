@@ -1,14 +1,26 @@
+// @ts-expect-error ts-migrate(2732) FIXME: Cannot find module 'common/models/data/vBeltGuysIn... Remove this comment to see the full error message
 import vBeltGuysInventoryJson from "common/models/data/vBeltGuysInventoryData.json";
 import Measurement from "common/models/Measurement";
 import { NotImplementedError } from "common/tooling/errors";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'goog... Remove this comment to see the full error message
 import { GoogleSpreadsheet } from "google-spreadsheet";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import { isEqual } from "lodash";
 
 export default class Inventory {
+  allRows: any;
+  allowAuth: any;
+  authCb: any;
+  googleSpreadsheet: any;
+  inventoryData: any;
+  name: any;
+  spreadsheetId: any;
+  worksheet: any;
+  worksheetName: any;
   constructor(
-    name,
-    spreadsheetId,
-    inventoryData,
+    name: any,
+    spreadsheetId: any,
+    inventoryData: any,
     allowAuth = true,
     authCb = () => {}
   ) {
@@ -28,15 +40,15 @@ export default class Inventory {
     this.googleSpreadsheet = new GoogleSpreadsheet(spreadsheetId);
   }
 
-  objToUrl(_) {
+  objToUrl(_: any) {
     throw new NotImplementedError("Inventory should implement objToUrl!");
   }
 
-  shouldWrite(_) {
+  shouldWrite(_: any) {
     throw new NotImplementedError("Inventory should implement shouldWrite!");
   }
 
-  objToArray(_) {
+  objToArray(_: any) {
     throw new NotImplementedError("Inventory should implement objToArray!");
   }
 
@@ -59,12 +71,13 @@ export default class Inventory {
     });
   }
 
-  scanInventory(obj) {
+  scanInventory(obj: any) {
     const url = this.objToUrl(obj);
     let result = { found: false, has: undefined };
 
-    this.inventoryData.forEach((item) => {
+    this.inventoryData.forEach((item: any) => {
       if (item.generatedUrl === url) {
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'boolean' is not assignable to type 'undefine... Remove this comment to see the full error message
         result = { found: true, has: Number(item.responseCode) === 200 };
       }
     });
@@ -72,14 +85,14 @@ export default class Inventory {
     return result;
   }
 
-  async writeToSheet(arr) {
+  async writeToSheet(arr: any) {
     try {
       this.allRows = await this.worksheet.getRows();
     } catch (e) {
       console.log("Rate limited on gSheets reads ", e);
     }
 
-    if (this.allRows.filter((row) => isEqual(row._rawData, arr)).length === 0) {
+    if (this.allRows.filter((row: any) => isEqual(row._rawData, arr)).length === 0) {
       try {
         await this.worksheet.addRow(arr);
       } catch (_) {
@@ -90,15 +103,18 @@ export default class Inventory {
     return null;
   }
 
-  async pingWebsite(obj) {
+  async pingWebsite(obj: any) {
     if (!this.allowAuth) {
       return;
     }
 
     const url = this.objToUrl(obj);
+    // @ts-expect-error ts-migrate(1345) FIXME: An expression of type 'void' cannot be tested for ... Remove this comment to see the full error message
     if (this.shouldWrite(obj)) {
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'void' is not assignable to param... Remove this comment to see the full error message
       const response = await fetch(url);
       return await this.writeToSheet([
+        // @ts-expect-error ts-migrate(2461) FIXME: Type 'void' is not an array type.
         ...this.objToArray(obj),
         response.status,
       ]);
@@ -121,9 +137,9 @@ export class VBeltGuysInventory extends Inventory {
     );
   }
 
-  objToUrl(obj) {
+  objToUrl(obj: any) {
     const length = Math.round(obj.pitch.mul(obj.teeth).to("mm").scalar);
-    const zeroPad = (num, places) => String(num).padStart(places, "0");
+    const zeroPad = (num: any, places: any) => String(num).padStart(places, "0");
 
     return `https://www.vbeltguys.com/products/${length}-${
       obj.pitch.to("mm").scalar
@@ -133,7 +149,7 @@ export class VBeltGuysInventory extends Inventory {
     )}-synchronous-timing-belt`;
   }
 
-  objToArray(obj) {
+  objToArray(obj: any) {
     return [
       String(obj.teeth),
       obj.pitch.to("mm").format(),
@@ -142,7 +158,7 @@ export class VBeltGuysInventory extends Inventory {
     ];
   }
 
-  shouldWrite(obj) {
+  shouldWrite(obj: any) {
     return (
       obj.pitch.eq(new Measurement(3, "mm")) ||
       obj.pitch.eq(new Measurement(5, "mm"))

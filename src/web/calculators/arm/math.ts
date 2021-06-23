@@ -11,11 +11,11 @@ import { objectify, unobjectify } from "common/tooling/util";
  * @param {Measurement} angleChange
  */
 export function calculateTimeToGoalJVN(
-  motor,
-  ratio,
-  armLength,
-  armMass,
-  angleChange
+  motor: any,
+  ratio: any,
+  armLength: any,
+  armMass: any,
+  angleChange: any
 ) {
   if (
     armLength.scalar === 0 ||
@@ -49,7 +49,7 @@ export function calculateTimeToGoalJVN(
  * @param {Measurement} currentAngle
  * @return {Measurement}
  */
-export function calculateArmTorque(comLength, armMass, currentAngle) {
+export function calculateArmTorque(comLength: any, armMass: any, currentAngle: any) {
   return comLength
     .mul(armMass)
     .mul(Measurement.GRAVITY)
@@ -61,7 +61,7 @@ export function calculateArmTorque(comLength, armMass, currentAngle) {
  * @param {Measurement} comLength
  * @param {Measurement} armMass
  */
-export function calculateArmInertia(comLength, armMass) {
+export function calculateArmInertia(comLength: any, armMass: any) {
   return armMass.mul(comLength).mul(comLength);
 }
 
@@ -73,8 +73,8 @@ export function calculateState({
   currentLimit,
   startAngle,
   endAngle,
-  iterationLimit,
-}) {
+  iterationLimit
+}: any) {
   ({
     motor,
     ratio,
@@ -84,6 +84,7 @@ export function calculateState({
     startAngle,
     endAngle,
     iterationLimit,
+  // @ts-expect-error ts-migrate(2556) FIXME: Expected 1 arguments, but got 0 or more.
   } = unobjectify(...arguments));
 
   if (
@@ -155,8 +156,8 @@ export function calculateState({
   return states.map((s) => objectify(s));
 }
 
-export function buildDataForAccessorVsTime(states, accessor, includeZeros) {
-  return states.map((s) => {
+export function buildDataForAccessorVsTime(states: any, accessor: any, includeZeros: any) {
+  return states.map((s: any) => {
     if (accessor(s) !== 0 || includeZeros) {
       return {
         y: accessor(s),

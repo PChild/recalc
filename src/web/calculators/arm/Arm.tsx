@@ -1,8 +1,13 @@
 import Heading from "common/components/headings/Heading";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/inputs/MotorInput' wa... Remove this comment to see the full error message
 import { LabeledMotorInput } from "common/components/io/inputs/MotorInput";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/inputs/PatientNumberI... Remove this comment to see the full error message
 import { LabeledPatientNumberInput } from "common/components/io/inputs/PatientNumberInput";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/inputs/QtyInput' was ... Remove this comment to see the full error message
 import { LabeledQtyInput } from "common/components/io/inputs/QtyInput";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/inputs/RatioInput' wa... Remove this comment to see the full error message
 import { LabeledRatioInput } from "common/components/io/inputs/RatioInput";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/outputs/QtyOutput' wa... Remove this comment to see the full error message
 import { LabeledQtyOutput } from "common/components/io/outputs/QtyOutput";
 import Metadata from "common/components/Metadata";
 import Measurement from "common/models/Measurement";
@@ -19,6 +24,7 @@ import { objectify, unobjectify } from "common/tooling/util";
 import { defaultAssignment } from "common/tooling/versions";
 import { useEffect, useState } from "react";
 import { NumberParam } from "use-query-params";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'workerize-loader!web/calculato... Remove this comment to see the full error message
 import worker from "workerize-loader!web/calculators/arm/math";
 
 import { ArmGraphConfig } from "./ArmGraphConfig";
@@ -83,8 +89,8 @@ export default function Arm() {
           iterationLimit,
         })
       )
-      .then((result) => {
-        result = result.map((r) => unobjectify(r));
+      .then((result: any) => {
+        result = result.map((r: any) => unobjectify(r));
         setTimeIsCalculating(false);
 
         if (result.length > 0) {
@@ -94,7 +100,7 @@ export default function Arm() {
         }
 
         setRawChartData(
-          buildDataForAccessorVsTime(result, (s) => s.current.scalar, false)
+          buildDataForAccessorVsTime(result, (s: any) => s.current.scalar, false)
         );
       });
 
@@ -111,8 +117,11 @@ export default function Arm() {
   ]);
 
   return (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <>
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Metadata config={config} />
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Heading
         title={config.title}
         subtitle={`V${config.version}`}
@@ -130,55 +139,66 @@ export default function Arm() {
           ]);
         }}
       />
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <div className="columns">
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <div className="column is-half">
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledMotorInput
             inputId="motors"
             stateHook={[motor, setMotor]}
             label={"Motor"}
             choices={Motor.getAllMotors().map((m) => m.name)}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledRatioInput
             inputId="ratio"
             stateHook={[ratio, setRatio]}
             label={"Ratio"}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyInput
             inputId="comLength"
             stateHook={[comLength, setComLength]}
             label={"CoM Distance"}
             choices={["in", "ft", "cm", "m"]}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyInput
             inputId="weight"
             stateHook={[armMass, setArmMass]}
             label={"Arm Mass"}
             choices={["lb", "kg"]}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyInput
             stateHook={[currentLimit, setCurrentLimit]}
             inputId="currentLimit"
             label="Current Limit"
             choices={["A"]}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyInput
             inputId="startAngle"
             stateHook={[startAngle, setStartAngle]}
             label={"Start Angle"}
             choices={["deg", "rad"]}
           />{" "}
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyInput
             inputId="endAngle"
             stateHook={[endAngle, setEndAngle]}
             label={"End Angle"}
             choices={["deg", "rad"]}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledPatientNumberInput
             inputId="iterationLimit"
             stateHook={[iterationLimit, setIterationLimit]}
             label={"Iteration Limit"}
             delay={0.4}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyOutput
             stateHook={[timeToGoal, setTimeToGoal]}
             label={"Time to goal"}
@@ -187,32 +207,49 @@ export default function Arm() {
             isLoading={timeIsCalculating}
           />
         </div>
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <div className="column">
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <article className="message is-info">
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <div className="message-header">
+              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               <p>Note</p>
             </div>
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <div className="message-body">
+              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               The angles follow the unit circle; i.e.: <br />
+              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               Upright = 90° <br />
+              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               Parallel to ground = 0° (right) or 180° (left) <br />
               Downwards = -90° or 270°
+              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               <br />
+              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               <br />
+              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               For example: <br />
               3/4 of a full rotation: start angle of 0°, end angle of 270°.
+              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               <br />
               1/4 of a rotation downwards: start angle of 60°, end angle of
               -30°.
+              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               <br />
+              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               <br />
               If you get a result of 0s for time to goal, try increasing
               iteration limit.
+              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               <br />
+              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               <br />
               This accounts for acceleration, but not deceleration.
             </div>
           </article>
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <Graph
             type="line"
             options={ArmGraphConfig.options()}

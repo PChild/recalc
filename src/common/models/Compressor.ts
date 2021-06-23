@@ -1,18 +1,21 @@
 import Measurement from "common/models/Measurement";
 import Model from "common/models/Model";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import keyBy from "lodash/keyBy";
 import { getCompressorWork } from "web/calculators/pneumatics/math";
 
+// @ts-expect-error ts-migrate(2417) FIXME: Class static side 'typeof Compressor' incorrectly ... Remove this comment to see the full error message
 export default class Compressor extends Model {
+  name: any;
   /**
    *
    * @param {string} name The brand name of the compressor.
    */
-  constructor(name) {
+  constructor(name: any) {
     super(name, compressorMap);
   }
 
-  timeToFillmLToPSI(mL, psi) {
+  timeToFillmLToPSI(mL: any, psi: any) {
     let currentPsi = new Measurement(0, "psi");
     let currentTime = new Measurement(0, "s");
     const timeIncrement = new Measurement(1, "s");
@@ -38,7 +41,7 @@ export default class Compressor extends Model {
     };
   }
 
-  static fromDict(dict) {
+  static fromDict(dict: any) {
     return new Compressor(dict.name);
   }
 
@@ -166,7 +169,7 @@ const compressorMap = keyBy(
     },
   ].map((c) => ({
     ...c,
-    cfmFn: (p) => {
+    cfmFn: (p: any) => {
       const pressureScalar = p.to("psi").scalar;
       const scalar = c.polynomialTerms.reduce(
         (prev, curr, i) => prev + curr * Math.pow(pressureScalar, i)

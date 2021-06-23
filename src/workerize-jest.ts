@@ -1,5 +1,5 @@
 module.exports = {
-  process(src, filename) {
+  process(src: any, filename: any) {
     return `
         async function asyncify() { return this.apply(null, arguments); }
         module.exports = function() {

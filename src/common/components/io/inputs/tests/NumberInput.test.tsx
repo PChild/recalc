@@ -10,6 +10,7 @@ describe("Labeled number input", () => {
     const { result } = renderHook(() => useState(1));
 
     render(
+      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <LabeledNumberInput
         stateHook={result.current}
         inputId="input"
@@ -24,6 +25,7 @@ describe("Labeled number input", () => {
       const { result } = renderHook(() => useState(1));
 
       render(
+        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <LabeledNumberInput
           stateHook={result.current}
           disabled={false}
@@ -36,6 +38,7 @@ describe("Labeled number input", () => {
       const { result } = renderHook(() => useState(2));
 
       render(
+        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <LabeledNumberInput
           stateHook={result.current}
           disabled={false}
@@ -49,6 +52,7 @@ describe("Labeled number input", () => {
   test("Disabled option disables input field", () => {
     const { result } = renderHook(() => useState(2));
     render(
+      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <LabeledNumberInput
         stateHook={result.current}
         disabled={true}
@@ -61,6 +65,7 @@ describe("Labeled number input", () => {
 
   test("Lack of disabled option has field enabled", () => {
     const { result } = renderHook(() => useState(2));
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     render(<LabeledNumberInput stateHook={result.current} label="Label" />);
 
     expect(screen.getByLabelText("Label")).toBeEnabled();
@@ -70,6 +75,7 @@ describe("Labeled number input", () => {
     const { result } = renderHook(() => useState(1));
 
     render(
+      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <LabeledNumberInput
         stateHook={result.current}
         disabled={false}

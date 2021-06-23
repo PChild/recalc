@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../LinearMech' was resolved to '/home/just... Remove this comment to see the full error message
 import LinearMech from "../LinearMech";
 
 const inputs = {
@@ -46,6 +47,7 @@ describe("LinearMech tests", () => {
   test("Should see initial state", () => {
     render(<LinearMech />);
 
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     expect(inputs.motors()).toHaveValue(1);
     expect(inputs.travelDistance()).toHaveValue(40);
     expect(inputs.spoolDiameter()).toHaveValue(1);
@@ -58,9 +60,12 @@ describe("LinearMech tests", () => {
     expect(outputs.currentDraw()).toHaveValue("186.217");
   });
 
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
   test.each("Initial state should change with query string", () => {
+    // @ts-expect-error ts-migrate(2790) FIXME: The operand of a 'delete' operator must be optiona... Remove this comment to see the full error message
     delete global.window.location;
     global.window = Object.create(window);
+    // @ts-expect-error ts-migrate(2740) FIXME: Type '{ search: string; }' is missing the followin... Remove this comment to see the full error message
     global.window.location = {
       search:
         "?efficiency=80&load=%7B%22s%22%3A100%2C%22u%22%3A%22lbs%22%7D&" +
@@ -71,6 +76,7 @@ describe("LinearMech tests", () => {
     };
 
     render(<LinearMech />);
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     expect(inputs.motors()).toHaveValue(3);
     expect(inputs.travelDistance()).toHaveValue(60);
     expect(inputs.spoolDiameter()).toHaveValue(1.5);

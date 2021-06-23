@@ -8,5 +8,6 @@ export default new PageConfig({
   description: "Common material information",
   initialState: {},
   version: 0,
+  // @ts-expect-error ts-migrate(2322) FIXME: Type 'Promise<typeof import("/home/justin/code/rec... Remove this comment to see the full error message
   component: lazy(() => import("web/materials/Materials")),
 });

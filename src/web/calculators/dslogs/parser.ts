@@ -1,44 +1,49 @@
 // Original Python implementation by 2877 Ligerbots:
 // https://github.com/ligerbots/dslogparser/blob/3f240dddc6d87bba8a2ff5823e8aa941b002a9b4/dslogparser/dslogparser.py
 
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'bits... Remove this comment to see the full error message
 import BitString from "bitstring";
 import { Buffer } from "buffer";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import _ from "lodash";
 import moment from "moment";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'pyth... Remove this comment to see the full error message
 import struct from "python-struct";
 
 const dsLogTimestep = 0.02;
 const maxInt64 = Math.pow(2, 63) - 1;
 
 class DSError extends Error {
-  constructor(message) {
+  constructor(message: any) {
     super(message);
     this.name = "DSError";
   }
 }
 
 class BinaryReader {
-  constructor(binary) {
+  binary: any;
+  index: any;
+  constructor(binary: any) {
     this.binary = binary;
     this.index = 0;
   }
 
-  read(bytes) {
+  read(bytes: any) {
     const ret = this.binary.slice(this.index, this.index + bytes);
     this.index += bytes;
     return ret;
   }
 }
 
-function unpackBits(rawValue) {
+function unpackBits(rawValue: any) {
   return [...new BitString(rawValue).bin()].map((c) => c !== "1");
 }
 
-function shiftFloat(rawValue, shiftRight) {
+function shiftFloat(rawValue: any, shiftRight: any) {
   return rawValue / Math.pow(2.0, shiftRight);
 }
 
-function uintFromBytes(bytes, offset, size) {
+function uintFromBytes(bytes: any, offset: any, size: any) {
   const firstByte = Math.floor(offset / 8);
   const numBytes = Math.ceil(size / 8);
 
@@ -58,7 +63,11 @@ function uintFromBytes(bytes, offset, size) {
 }
 
 export class DSLogParser {
-  constructor(binary) {
+  binary: any;
+  currentTime: any;
+  stream: any;
+  version: any;
+  constructor(binary: any) {
     this.binary = Buffer.from(binary);
     this.stream = new BinaryReader(this.binary);
     this.readHeader();
@@ -128,7 +137,7 @@ export class DSLogParser {
     return res;
   }
 
-  parseDataV3(dataBytes) {
+  parseDataV3(dataBytes: any) {
     const rawValues = struct.unpack(">BBHBcBBH", dataBytes);
     const statusBits = unpackBits(rawValues[4]);
 
@@ -152,7 +161,7 @@ export class DSLogParser {
     };
   }
 
-  parsePDPV3(pdpBytes) {
+  parsePDPV3(pdpBytes: any) {
     const pdpOffsets = [
       8, 18, 28, 38, 48, 58, 72, 82, 92, 102, 112, 122, 136, 146, 156, 166,
     ];

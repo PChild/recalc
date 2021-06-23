@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Load' was resolved to '/home/justin/cod... Remove this comment to see the full error message
 import Load from "../Load";
 
 const inputs = {
@@ -53,6 +54,7 @@ describe("Load tests", () => {
   test("Should see initial state", () => {
     render(<Load />);
 
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     expect(inputs.motor()).toHaveValue(2);
     expect(inputs.planetaryRatio()).toHaveValue(1);
     expect(inputs.currentLimit()).toHaveValue(60);

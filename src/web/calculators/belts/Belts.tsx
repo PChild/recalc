@@ -1,11 +1,15 @@
 import Heading from "common/components/headings/Heading";
 import BooleanInput from "common/components/io/inputs/BooleanInput";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/inputs/MultiInputLine... Remove this comment to see the full error message
 import MultiInputLine from "common/components/io/inputs/MultiInputLine";
 import { LabeledNumberInput } from "common/components/io/inputs/NumberInput";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/inputs/QtyInput' was ... Remove this comment to see the full error message
 import { LabeledQtyInput } from "common/components/io/inputs/QtyInput";
 import { LabeledNumberOutput } from "common/components/io/outputs/NumberOutput";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/outputs/QtyOutput' wa... Remove this comment to see the full error message
 import { LabeledQtyOutput } from "common/components/io/outputs/QtyOutput";
 import Metadata from "common/components/Metadata";
+// @ts-expect-error ts-migrate(2732) FIXME: Cannot find module 'common/models/data/beltData.js... Remove this comment to see the full error message
 import beltData from "common/models/data/beltData.json";
 import Measurement from "common/models/Measurement";
 import {
@@ -139,8 +143,11 @@ export default function Belts() {
   }, [p1Pitch, p2Pitch, p1Teeth, p2Teeth, smallerCenter]);
 
   return (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <>
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Metadata config={config} />
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Heading
         title={config.title}
         subtitle={`V${config.version}`}
@@ -159,8 +166,11 @@ export default function Belts() {
           ]);
         }}
       />
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <div className="columns">
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <div className="column">
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyInput
             label={"Pitch"}
             stateHook={[pitch, setPitch]}
@@ -168,6 +178,7 @@ export default function Belts() {
             inputId={"pitch-input"}
             selectId={"pitch-select"}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyInput
             label="Desired Center"
             stateHook={[desiredCenter, setDesiredCenter]}
@@ -176,6 +187,7 @@ export default function Belts() {
             selectId={"desired-center-select"}
             disabled={useCustomBelt}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyInput
             label="Extra Center"
             stateHook={[extraCenter, setExtraCenter]}
@@ -183,12 +195,15 @@ export default function Belts() {
             inputId={"extra-center-input"}
             selectId={"extra-center-select"}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <MultiInputLine label={"Pulley 1"}>
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <LabeledNumberInput
               stateHook={[p1Teeth, setP1Teeth]}
               label="Teeth"
               inputId="p1Teeth-input"
             />
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <LabeledQtyOutput
               label="PD"
               stateHook={[p1Pitch, setP1Pitch]}
@@ -198,12 +213,15 @@ export default function Belts() {
               selectId="p1Pitch-select"
             />
           </MultiInputLine>
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <MultiInputLine label={"Pulley 2"}>
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <LabeledNumberInput
               stateHook={[p2Teeth, setP2Teeth]}
               label="Teeth"
               inputId="p2Teeth-input"
             />
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <LabeledQtyOutput
               label="PD"
               stateHook={[p2Pitch, setP2Pitch]}
@@ -213,7 +231,9 @@ export default function Belts() {
               selectId="p2Pitch-select"
             />
           </MultiInputLine>
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <MultiInputLine label="Smaller">
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <LabeledQtyOutput
               stateHook={[smallerCenter, setSmallerCenter]}
               label="Center"
@@ -222,13 +242,16 @@ export default function Belts() {
               inputId="smallerCenterDistanceInput"
               selectId="smallerCenterDistanceSelect"
             />
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <LabeledNumberOutput
               stateHook={[smallerTeeth, setSmallerTeeth]}
               label="Teeth"
               inputId="smallerBeltTeeth"
             />
           </MultiInputLine>
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <MultiInputLine label="Larger">
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <LabeledQtyOutput
               stateHook={[largerCenter, setLargerCenter]}
               label="Center"
@@ -237,44 +260,53 @@ export default function Belts() {
               inputId="largerCenterDistanceInput"
               selectId="largerBeltTeeth"
             />
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <LabeledNumberOutput
               stateHook={[largerTeeth, setLargerTeeth]}
               label="Teeth"
               inputId="largerBeltTeeth"
             />
           </MultiInputLine>
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledNumberOutput
             stateHook={[smallerMesh, setSmallerMesh]}
             label="Teeth in mesh"
             inputId="tooth-mesh"
             precision={1}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledNumberInput
             stateHook={[toothIncrement, setToothIncrement]}
             label="Belt tooth increment"
             inputId="tooth-increment"
             disabled={useCustomBelt}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledNumberInput
             stateHook={[toothMax, setToothMax]}
             label="Belt tooth maximum"
             inputId="tooth-max"
             disabled={useCustomBelt}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <MultiInputLine label="Specific Belt">
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <BooleanInput
               stateHook={[useCustomBelt, setUseCustomBelt]}
               label=""
               inputId="enableSpecificBelt"
             />
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <LabeledNumberInput
               stateHook={[customBeltTeeth, setCustomBeltTeeth]}
               label="Belt Teeth"
+              // @ts-expect-error ts-migrate(2322) FIXME: Type '{ stateHook: any[]; label: string; className... Remove this comment to see the full error message
               className="is-9"
               disabled={!useCustomBelt}
               labelFg={2}
             />
           </MultiInputLine>
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LinkGenerator
             smallBelt={smallerTeeth}
             largeBelt={largerTeeth}
@@ -282,7 +314,9 @@ export default function Belts() {
             data={beltData}
           />
         </div>
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <div className="column">
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <CheatSheet />
         </div>
       </div>

@@ -6,5 +6,6 @@ export default new PageConfig({
   title: "DS Log Viewer",
   version: 1,
   initialState: {},
+  // @ts-expect-error ts-migrate(6142) FIXME: Module 'web/calculators/dslogs/DSLogs' was resolve... Remove this comment to see the full error message
   component: lazy(() => import("web/calculators/dslogs/DSLogs")),
 });

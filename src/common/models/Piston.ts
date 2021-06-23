@@ -2,7 +2,15 @@ import Measurement from "common/models/Measurement";
 import Model from "common/models/Model";
 import { ArgumentError } from "common/tooling/errors";
 
+// @ts-expect-error ts-migrate(2417) FIXME: Class static side 'typeof Piston' incorrectly exte... Remove this comment to see the full error message
 export default class Piston extends Model {
+  bore: any;
+  enabled: any;
+  period: any;
+  pullPressure: any;
+  pushPressure: any;
+  rodDiameter: any;
+  strokeLength: any;
   /**
    *
    * @param {bool} enabled - Whether the piston is enabled or not
@@ -20,8 +28,9 @@ export default class Piston extends Model {
     strokeLength,
     pullPressure,
     pushPressure,
-    period,
-  }) {
+    period
+  }: any) {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 0.
     super();
     this.enabled = enabled;
     this.bore = bore;
@@ -51,7 +60,7 @@ export default class Piston extends Model {
    * @param {Measurement} pressure - how much pressure is in the system at time of actuation
    * @returns {Measurement} How much force the pushing action exerts
    */
-  getPushForce(pressure) {
+  getPushForce(pressure: any) {
     const boreRadius = this.bore.div(2);
     const boreArea = boreRadius.mul(boreRadius).mul(Math.PI);
     return boreArea.mul(pressure);
@@ -62,7 +71,7 @@ export default class Piston extends Model {
    * @param {Measurement} pressure - how much pressure is in the system at time of actuation
    * @returns {Measurement} How much force the pulling action exerts
    */
-  getPullForce(pressure) {
+  getPullForce(pressure: any) {
     const boreRadius = this.bore.div(2);
     const boreArea = boreRadius.mul(boreRadius).mul(Math.PI);
     const shaftRadius = this.rodDiameter.div(2);
@@ -82,7 +91,7 @@ export default class Piston extends Model {
     };
   }
 
-  static fromDict(dict) {
+  static fromDict(dict: any) {
     return new Piston({
       enabled: dict.enabled,
       bore: Measurement.fromDict(dict.bore),

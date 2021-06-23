@@ -1,6 +1,7 @@
 import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Arm' was resolved to '/home/justin/code... Remove this comment to see the full error message
 import Arm from "../Arm";
 
 describe("Arm calculator", () => {
@@ -61,8 +62,10 @@ describe("Arm calculator", () => {
   });
 
   test("Initial state should change with query string", async () => {
+    // @ts-expect-error ts-migrate(2790) FIXME: The operand of a 'delete' operator must be optiona... Remove this comment to see the full error message
     delete global.window.location;
     global.window = Object.create(window);
+    // @ts-expect-error ts-migrate(2740) FIXME: Type '{ search: string; }' is missing the followin... Remove this comment to see the full error message
     global.window.location = {
       search:
         '?comLength=%7B"s"%3A15%2C"u"%3A"in"%7D&armMass=%7B"s"%3A10%2C"u"%3A"lbs"%7D&' +

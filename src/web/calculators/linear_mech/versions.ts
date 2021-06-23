@@ -2,7 +2,7 @@ import { defaultAssignment } from "common/tooling/versions";
 
 import linear from "./index";
 
-export function linearVersionManager(query, queryParams) {
+export function linearVersionManager(query: any, queryParams: any) {
   if (query.version === undefined || Number(query.version) === linear.version) {
     return defaultAssignment(query, queryParams);
   }

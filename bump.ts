@@ -23,7 +23,7 @@ const questions = [
     const results = await prompts(questions);
     const type = choices[results.type];
 
-    exec(`npm version ${type}`, (error, stdout, stderr) => {
+    exec(`npm version ${type}`, (error: any, stdout: any, stderr: any) => {
       if (error) {
         console.log(`error: ${error.message}`);
         return;

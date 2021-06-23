@@ -1,13 +1,27 @@
 import Model from "common/models/Model";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'js-q... Remove this comment to see the full error message
 import Qty from "js-quantities";
 
+// @ts-expect-error ts-migrate(2417) FIXME: Class static side 'typeof Measurement' incorrectly... Remove this comment to see the full error message
 export default class Measurement extends Model {
+  add: any;
+  compareTo: any;
+  div: any;
+  eq: any;
+  gt: any;
+  gte: any;
+  innerQty: any;
+  lt: any;
+  lte: any;
+  mul: any;
+  same: any;
+  sub: any;
   /**
    * Should not be used outside the Measurement class!
    * @param {Qty} qty - The js-quantities object to store internally.
    * @returns {Measurement} a new Measurement instance.
    */
-  static fromQty(qty) {
+  static fromQty(qty: any) {
     return new Measurement(qty.scalar, qty.units());
   }
 
@@ -20,7 +34,8 @@ export default class Measurement extends Model {
    * @param {number} magnitude - Magnitude of the measurement
    * @param {string=} units - Units of the measurement (optional)
    */
-  constructor(magnitude, units) {
+  constructor(magnitude: any, units: any) {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 0.
     super();
     this.innerQty = Measurement.simplify(Qty(magnitude, units));
 
@@ -50,8 +65,10 @@ export default class Measurement extends Model {
       "gte",
       "compareTo",
     ].forEach((fName) => {
-      this[fName] = (measurement_) => {
+      // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
+      this[fName] = (measurement_: any) => {
         if (!(measurement_ instanceof Measurement)) {
+          // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
           measurement_ = new Measurement(measurement_);
         }
 
@@ -72,7 +89,7 @@ export default class Measurement extends Model {
    * @param qty - js-quantities object to simplify.
    * @returns {Qty} The same object, either qty or qty.to( ... )
    */
-  static simplify(qty) {
+  static simplify(qty: any) {
     const preferred = {
       resistance: "ohm",
       time: "s",
@@ -89,6 +106,7 @@ export default class Measurement extends Model {
       force: "N",
     };
 
+    // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
     return qty.kind() in preferred ? qty.to(preferred[qty.kind()]) : qty;
   }
 
@@ -97,7 +115,7 @@ export default class Measurement extends Model {
    * @param {string} units - Units to cast the measurement to.
    * @returns {Measurement} this (same instance)
    */
-  to(units) {
+  to(units: any) {
     this.innerQty = this.innerQty.to(units);
     return this;
   }
@@ -137,7 +155,7 @@ export default class Measurement extends Model {
     };
   }
 
-  static fromDict(dict) {
+  static fromDict(dict: any) {
     return new Measurement(Number(dict.s), dict.u);
   }
 
@@ -150,6 +168,7 @@ export default class Measurement extends Model {
   }
 
   format() {
+    // @ts-expect-error ts-migrate(2569) FIXME: Type 'IArguments' is not an array type or a string... Remove this comment to see the full error message
     return this.innerQty.format(...arguments);
   }
 
@@ -160,7 +179,7 @@ export default class Measurement extends Model {
     );
   }
 
-  clamp(floor, ceiling) {
+  clamp(floor: any, ceiling: any) {
     if (this.lt(floor)) {
       return floor;
     }
@@ -191,11 +210,11 @@ export default class Measurement extends Model {
     return this.div(new Measurement(1, "rad"));
   }
 
-  static min(m1, m2) {
+  static min(m1: any, m2: any) {
     return m1.lt(m2) ? m1 : m2;
   }
 
-  static max(m1, m2) {
+  static max(m1: any, m2: any) {
     return m1.gt(m2) ? m1 : m2;
   }
 
@@ -207,7 +226,7 @@ export default class Measurement extends Model {
     return new Measurement(Math.max(0, this.scalar), this.units());
   }
 
-  round(n) {
+  round(n: any) {
     return new Measurement(Number(this.scalar.toFixed(n)), this.units());
   }
 }

@@ -1,9 +1,14 @@
 import Heading from "common/components/headings/Heading";
 import BooleanInput from "common/components/io/inputs/BooleanInput";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/inputs/MotorInput' wa... Remove this comment to see the full error message
 import { LabeledMotorInput } from "common/components/io/inputs/MotorInput";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/inputs/MultiInputLine... Remove this comment to see the full error message
 import MultiInputLine from "common/components/io/inputs/MultiInputLine";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/inputs/QtyInput' was ... Remove this comment to see the full error message
 import { LabeledQtyInput } from "common/components/io/inputs/QtyInput";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/inputs/RatioInput' wa... Remove this comment to see the full error message
 import { LabeledRatioInput } from "common/components/io/inputs/RatioInput";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/outputs/QtyOutput' wa... Remove this comment to see the full error message
 import { LabeledQtyOutput } from "common/components/io/outputs/QtyOutput";
 import Metadata from "common/components/Metadata";
 import Measurement from "common/models/Measurement";
@@ -91,6 +96,7 @@ export default function Flywheel() {
       targetSpeed
     );
 
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ x: number; y: number; }[]' is ... Remove this comment to see the full error message
     setChartData(data);
   }, [
     motor,
@@ -103,8 +109,11 @@ export default function Flywheel() {
   ]);
 
   return (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <>
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Metadata config={config} />
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Heading
         title={config.title}
         subtitle={`V${config.version}`}
@@ -124,19 +133,24 @@ export default function Flywheel() {
           ]);
         }}
       />
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <div className="columns">
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <div className="column">
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledMotorInput
             inputId="motor"
             label={"Motor"}
             stateHook={[motor, setMotor]}
             choices={Motor.choices}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledRatioInput
             label="Ratio"
             inputId="ratio"
             stateHook={[ratio, setRatio]}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyInput
             inputId="targetRpm"
             stateHook={[targetSpeed, setTargetSpeed]}
@@ -144,6 +158,7 @@ export default function Flywheel() {
             label={"Target Flywheel Speed"}
             wideLabel={true}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyInput
             inputId="radius"
             stateHook={[radius, setRadius]}
@@ -151,6 +166,7 @@ export default function Flywheel() {
             label={"Radius"}
             disabled={useCustomMOI}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyInput
             inputId="weight"
             stateHook={[weight, setWeight]}
@@ -159,7 +175,9 @@ export default function Flywheel() {
             disabled={useCustomMOI}
           />
 
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <MultiInputLine label="MOI">
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <LabeledQtyInput
               inputId="moi"
               stateHook={[momentOfInertia, setMomentOfInertia]}
@@ -167,6 +185,7 @@ export default function Flywheel() {
               label={""}
               disabled={!useCustomMOI}
             />
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <BooleanInput
               stateHook={[useCustomMOI, setUseCustomMOI]}
               label="Use custom MOI"
@@ -174,6 +193,7 @@ export default function Flywheel() {
             />
           </MultiInputLine>
 
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyOutput
             inputId="windupTime"
             stateHook={[windupTime, setWindupTime]}
@@ -182,7 +202,9 @@ export default function Flywheel() {
             precision={3}
           />
         </div>
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <div className="column">
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <Graph
             type="line"
             data={{

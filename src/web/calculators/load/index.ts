@@ -24,5 +24,6 @@ export default new PageConfig({
     pinionMaterial: Material.Steel4140(),
     gearMaterial: Material.Aluminum7075_T6(),
   },
+  // @ts-expect-error ts-migrate(6142) FIXME: Module 'web/calculators/load/Load' was resolved to... Remove this comment to see the full error message
   component: lazy(() => import("web/calculators/load/Load")),
 });

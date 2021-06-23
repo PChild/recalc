@@ -1,4 +1,5 @@
 import Measurement from "common/models/Measurement";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'goog... Remove this comment to see the full error message
 import { GoogleSpreadsheet } from "google-spreadsheet";
 
 import { VBeltGuysInventory } from "../Inventory";
@@ -182,7 +183,8 @@ describe("Inventory", () => {
 
     test("Authenticates and loads worksheet", (done) => {
       const inv = new VBeltGuysInventory({
-        authCb: (inventory) => {
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '(inventory: any) => void' is not assignable ... Remove this comment to see the full error message
+        authCb: (inventory: any) => {
           expect(inventory.worksheet).not.toBeUndefined();
           done();
         },
@@ -194,7 +196,8 @@ describe("Inventory", () => {
 
     test("Writes to worksheet", (done) => {
       const inv = new VBeltGuysInventory({
-        authCb: async (inventory) => {
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '(inventory: any) => Promise<void>' is not as... Remove this comment to see the full error message
+        authCb: async (inventory: any) => {
           expect(inventory.worksheet).not.toBeUndefined();
           await inventory.writeToSheet([1, 2, 3, 4, 5]);
 
@@ -219,7 +222,8 @@ describe("Inventory", () => {
 
     test("Pings VBeltGuys and attempts to write", (done) => {
       const inv = new VBeltGuysInventory({
-        authCb: async (inventory) => {
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '(inventory: any) => Promise<void>' is not as... Remove this comment to see the full error message
+        authCb: async (inventory: any) => {
           const spy = jest
             .spyOn(inventory, "writeToSheet")
             .mockImplementation(() => {});

@@ -1,12 +1,19 @@
 import Heading from "common/components/headings/Heading";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/inputs/MaterialInput'... Remove this comment to see the full error message
 import MaterialInput from "common/components/io/inputs/MaterialInput";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/inputs/MotorInput' wa... Remove this comment to see the full error message
 import { LabeledMotorInput } from "common/components/io/inputs/MotorInput";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/inputs/MultiInputLine... Remove this comment to see the full error message
 import MultiInputLine from "common/components/io/inputs/MultiInputLine";
 import { LabeledNumberInput } from "common/components/io/inputs/NumberInput";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/inputs/PressureAngleI... Remove this comment to see the full error message
 import PressureAngleInput from "common/components/io/inputs/PressureAngleInput";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/inputs/QtyInput' was ... Remove this comment to see the full error message
 import { LabeledQtyInput } from "common/components/io/inputs/QtyInput";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/inputs/RatioInput' wa... Remove this comment to see the full error message
 import { LabeledRatioInput } from "common/components/io/inputs/RatioInput";
 import { LabeledNumberOutput } from "common/components/io/outputs/NumberOutput";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/outputs/QtyOutput' wa... Remove this comment to see the full error message
 import { LabeledQtyOutput } from "common/components/io/outputs/QtyOutput";
 import Metadata from "common/components/Metadata";
 import Material from "common/models/Material";
@@ -25,7 +32,7 @@ import { NumberParam, StringParam } from "use-query-params";
 import config from "./index";
 import { calculateState } from "./math";
 
-function calculateFOS(safeLoad, stallLoad) {
+function calculateFOS(safeLoad: any, stallLoad: any) {
   if (stallLoad.scalar === 0) {
     return 0;
   }
@@ -144,8 +151,11 @@ export default function Load() {
   }, [gearStallLoad, gearSafeLoad]);
 
   return (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <>
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Metadata config={config} />
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Heading
         title={config.title}
         subtitle={`V${config.version}`}
@@ -169,42 +179,53 @@ export default function Load() {
           ]);
         }}
       />
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <div className="columns">
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <div className="column">
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledMotorInput
             inputId="motors"
             stateHook={[motor, setMotor]}
             label={"Motor"}
             choices={Motor.getAllMotors().map((m) => m.name)}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledRatioInput
             label="Planetary Ratio"
             stateHook={[planetaryRatio, setPlanetaryRatio]}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyInput
             inputId="currentLimit"
             stateHook={[currentLimit, setCurrentLimit]}
             label="Current Limit"
             choices={["A"]}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyInput
             inputId="diametralPitch"
             stateHook={[diametralPitch, setDiametralPitch]}
             label="Diametral Pitch"
             choices={["1/in"]}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <PressureAngleInput stateHook={[pressureAngle, setPressureAngle]} />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <MultiInputLine label="Pinion(s)">
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <LabeledNumberInput
               inputId="pinionTeeth"
               stateHook={[pinionTeeth, setPinionTeeth]}
               label="Teeth"
             />
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <MaterialInput
               label="Material"
               selectId="pinionMaterial"
               stateHook={[pinionMaterial, setPinionMaterial]}
             />
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <LabeledQtyInput
               stateHook={[pinionWidth, setPinionWidth]}
               choices={["in"]}
@@ -212,17 +233,21 @@ export default function Load() {
               inputId="pinionWidth"
             />
           </MultiInputLine>
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <MultiInputLine label="Driven Gear">
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <LabeledNumberInput
               inputId="gearTeeth"
               stateHook={[gearTeeth, setGearTeeth]}
               label="Teeth"
             />
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <MaterialInput
               label="Material"
               stateHook={[gearMaterial, setGearMaterial]}
               selectId="gearMaterial"
             />
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <LabeledQtyInput
               stateHook={[gearWidth, setGearWidth]}
               choices={["in"]}
@@ -230,63 +255,80 @@ export default function Load() {
               inputId="gearWidth"
             />
           </MultiInputLine>
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyOutput
             stateHook={[pinionSafeLoad, setPinionSafeLoad]}
             choices={["lbf", "N"]}
             label={"Pinion Safe Load"}
             precision={3}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyOutput
             stateHook={[pinionStallLoad, setPinionStallLoad]}
             choices={["lbf", "N"]}
             label={"Pinion Stall Load"}
             precision={3}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledNumberOutput
             stateHook={[pinionFOS, setPinionFOS]}
             label="Pinion Factor of Safety"
             precision={3}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyOutput
             stateHook={[gearSafeLoad, setGearSafeLoad]}
             choices={["lbf", "N"]}
             label={"Driven Gear Safe Load"}
             precision={3}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyOutput
             stateHook={[gearStallLoad, setGearStallLoad]}
             choices={["lbf", "N"]}
             label={"Driven Gear Stall Load"}
             precision={3}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledNumberOutput
             stateHook={[gearFOS, setGearFOS]}
             label="Driven Gear Factor of Safety"
             precision={3}
           />
         </div>
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <div className="column">
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <article className="message is-warning">
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <div className="message-header">
+              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               <p>Warning</p>
             </div>
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <div className="message-body">
               This calculator uses some questionable regression math in order to
               estimate Lewis Y factors. Please take results from this calculator
               with a grain of salt. This math is not perfect, it exists just for
               estimating factors of safety.
+              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               <br />
+              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               <br />
               Additionally, the field of material science has many different
               tests & specifications for different materials and their
               properties, and some data is imperfectly extrapolated from other
               tests.
+              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               <br />
+              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               <br />
               This calculator assumes the pinion is attached directly to the
               motor output shaft, and that each motor has a pinion together
               driving a single gear.
+              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               <br />
+              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               <br />
               For the planetary ratio, it assumes only a single motor is driving
               each planetary, and the number of planetaries is equal to the

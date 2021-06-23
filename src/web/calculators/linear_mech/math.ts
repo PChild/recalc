@@ -3,23 +3,22 @@ import Ratio from "common/models/Ratio";
 import { fixFloatingPoint } from "common/tooling/util";
 
 export function generateTimeToGoalChartData(
-  motor,
-  travelDistance,
-  spoolDiameter,
-  load,
-  ratio,
-  efficiency
+  motor: any,
+  travelDistance: any,
+  spoolDiameter: any,
+  load: any,
+  ratio: any,
+  efficiency: any
 ) {
   const start = 0.25 * ratio.asNumber();
   const end = 4.0 * ratio.asNumber();
   const n = 100;
   const step = (end - start) / n;
 
-  const getTimeForRatio = (r) =>
-    CalculateTimeToGoal(
-      travelDistance,
-      CalculateLoadedSpeed(motor, spoolDiameter, load, r, efficiency)
-    );
+  const getTimeForRatio = (r: any) => CalculateTimeToGoal(
+    travelDistance,
+    CalculateLoadedSpeed(motor, spoolDiameter, load, r, efficiency)
+  );
 
   let data = [];
   for (let i = start; i < end; i = fixFloatingPoint(step + i)) {
@@ -37,18 +36,17 @@ export function generateTimeToGoalChartData(
 }
 
 export function generateCurrentDrawChartData(
-  motor,
-  spoolDiameter,
-  load,
-  ratio
+  motor: any,
+  spoolDiameter: any,
+  load: any,
+  ratio: any
 ) {
   const start = 0.25 * ratio.asNumber();
   const end = 4.0 * ratio.asNumber();
   const n = 100;
   const step = (end - start) / n;
 
-  const getCurrentDrawForRatio = (r) =>
-    calculateCurrentDraw(motor, spoolDiameter, load, r);
+  const getCurrentDrawForRatio = (r: any) => calculateCurrentDraw(motor, spoolDiameter, load, r);
 
   let data = [];
   for (let i = start; i < end; i = fixFloatingPoint(step + i)) {
@@ -65,7 +63,7 @@ export function generateCurrentDrawChartData(
   return data;
 }
 
-export function CalculateUnloadedSpeed(motor, spoolDiameter, ratio) {
+export function CalculateUnloadedSpeed(motor: any, spoolDiameter: any, ratio: any) {
   if (ratio.asNumber() === 0 || motor.quantity === 0) {
     return new Measurement(0, "ft/s");
   }
@@ -77,11 +75,11 @@ export function CalculateUnloadedSpeed(motor, spoolDiameter, ratio) {
 }
 
 export function CalculateLoadedSpeed(
-  motor,
-  spoolDiameter,
-  load,
-  ratio,
-  efficiency
+  motor: any,
+  spoolDiameter: any,
+  load: any,
+  ratio: any,
+  efficiency: any
 ) {
   const stallDragLoad = CalculateStallDragLoad(
     motor,
@@ -118,10 +116,10 @@ export function CalculateLoadedSpeed(
 }
 
 export function CalculateStallDragLoad(
-  motor,
-  spoolDiameter,
-  ratio,
-  efficiency
+  motor: any,
+  spoolDiameter: any,
+  ratio: any,
+  efficiency: any
 ) {
   if (spoolDiameter.scalar === 0) {
     return new Measurement(0, "lb");
@@ -134,14 +132,14 @@ export function CalculateStallDragLoad(
     .div(new Measurement(9.81, "m*s^-2"));
 }
 
-export function CalculateTimeToGoal(travelDistance, loadedSpeed) {
+export function CalculateTimeToGoal(travelDistance: any, loadedSpeed: any) {
   if (loadedSpeed.baseScalar === 0) {
     return new Measurement(0, "s");
   }
   return travelDistance.div(loadedSpeed);
 }
 
-export function calculateCurrentDraw(motor, spoolDiameter, load, ratio) {
+export function calculateCurrentDraw(motor: any, spoolDiameter: any, load: any, ratio: any) {
   if (ratio.asNumber() === 0 || motor.quantity === 0) {
     return new Measurement(0, "A");
   }

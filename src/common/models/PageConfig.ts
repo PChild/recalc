@@ -1,4 +1,11 @@
 export default class PageConfig {
+  component: any;
+  description: any;
+  image: any;
+  initialState: any;
+  title: any;
+  url: any;
+  version: any;
   constructor({
     url,
     image,
@@ -6,8 +13,8 @@ export default class PageConfig {
     version,
     initialState,
     component,
-    description,
-  }) {
+    description
+  }: any) {
     this.url = url;
     this.image = image;
     this.title = title;

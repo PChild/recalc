@@ -1,18 +1,29 @@
 import Measurement from "common/models/Measurement";
 import Model from "common/models/Model";
 import Rules from "common/models/Rules";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import keyBy from "lodash/keyBy";
 
 export const nominalVoltage = new Measurement(12, "V");
 const highCurrentLimit = new Measurement(1000, "A");
 
+// @ts-expect-error ts-migrate(2417) FIXME: Class static side 'typeof Motor' incorrectly exten... Remove this comment to see the full error message
 export default class Motor extends Model {
+  freeCurrent: any;
+  freeSpeed: any;
+  kT: any;
+  kV: any;
+  maxPower: any;
+  quantity: any;
+  resistance: any;
+  stallCurrent: any;
+  stallTorque: any;
   /**
    *
    * @param {number} quantity - number of motors in the gearbox
    * @param {string} name - the specific motor name
    */
-  constructor(quantity, name) {
+  constructor(quantity: any, name: any) {
     super(name, motorMap);
     this.quantity = quantity;
     this.kV = this.freeSpeed.div(nominalVoltage);
@@ -26,47 +37,47 @@ export default class Motor extends Model {
     this.resistance = nominalVoltage.div(this.stallCurrent);
   }
 
-  static Falcon500s(quantity) {
+  static Falcon500s(quantity: any) {
     return new Motor(quantity, "Falcon 500");
   }
 
-  static NEOs(quantity) {
+  static NEOs(quantity: any) {
     return new Motor(quantity, "NEO");
   }
 
-  static NEO550s(quantity) {
+  static NEO550s(quantity: any) {
     return new Motor(quantity, "NEO 550");
   }
 
-  static CIMs(quantity) {
+  static CIMs(quantity: any) {
     return new Motor(quantity, "CIM");
   }
 
-  static MiniCIMs(quantity) {
+  static MiniCIMs(quantity: any) {
     return new Motor(quantity, "MiniCIM");
   }
 
-  static BAGs(quantity) {
+  static BAGs(quantity: any) {
     return new Motor(quantity, "BAG");
   }
 
-  static _775RedLines(quantity) {
+  static _775RedLines(quantity: any) {
     return new Motor(quantity, "775 RedLine");
   }
 
-  static _775pros(quantity) {
+  static _775pros(quantity: any) {
     return new Motor(quantity, "775pro");
   }
 
-  static AM9015s(quantity) {
+  static AM9015s(quantity: any) {
     return new Motor(quantity, "AM-9015");
   }
 
-  static NeveRests(quantity) {
+  static NeveRests(quantity: any) {
     return new Motor(quantity, "NeveRest");
   }
 
-  static Snowblowers(quantity) {
+  static Snowblowers(quantity: any) {
     return new Motor(quantity, "Snowblower");
   }
 
@@ -77,7 +88,7 @@ export default class Motor extends Model {
     };
   }
 
-  static fromDict(dict) {
+  static fromDict(dict: any) {
     return new Motor(dict.quantity, dict.name);
   }
 
@@ -89,7 +100,7 @@ export default class Motor extends Model {
     return Object.keys(motorMap).map((n) => new Motor(1, n));
   }
 
-  eq(motor) {
+  eq(motor: any) {
     if (!(motor instanceof Motor)) {
       return false;
     }
@@ -217,7 +228,18 @@ const motorMap = keyBy(
 );
 
 export class MotorState {
-  constructor(motor, currentLimit, state) {
+  current: any;
+  currentLimit: any;
+  didLimitCurrent: any;
+  didLimitTorque: any;
+  didLimitVoltage: any;
+  motor: any;
+  power: any;
+  rpm: any;
+  solved: any;
+  torque: any;
+  voltage: any;
+  constructor(motor: any, currentLimit: any, state: any) {
     this.motor = motor;
     this.currentLimit = currentLimit;
     this.rpm = state.rpm;
@@ -251,14 +273,13 @@ export class MotorState {
 export const motorRules = new Rules();
 motorRules.addRule(
   "terminating condition",
-  (m) =>
-    m.current !== undefined &&
-    m.torque !== undefined &&
-    m.rpm !== undefined &&
-    m.voltage !== undefined &&
-    m.power !== undefined &&
-    m.solved === false,
-  (m) => {
+  (m: any) => m.current !== undefined &&
+  m.torque !== undefined &&
+  m.rpm !== undefined &&
+  m.voltage !== undefined &&
+  m.power !== undefined &&
+  m.solved === false,
+  (m: any) => {
     m.solved = true;
   },
   true,
@@ -266,8 +287,8 @@ motorRules.addRule(
 );
 motorRules.addRule(
   "Current -> torque",
-  (m) => m.current !== undefined && m.torque === undefined,
-  (m) => {
+  (m: any) => m.current !== undefined && m.torque === undefined,
+  (m: any) => {
     m.torque = m.motor.kT
       .mul(m.current.sub(m.motor.freeCurrent))
       .forcePositive();
@@ -275,8 +296,8 @@ motorRules.addRule(
 );
 motorRules.addRule(
   "Torque -> current",
-  (m) => m.torque !== undefined && m.current === undefined,
-  (m) => {
+  (m: any) => m.torque !== undefined && m.current === undefined,
+  (m: any) => {
     m.current = m.motor.freeCurrent
       .add(m.torque.div(m.motor.kT))
       .forcePositive();
@@ -284,9 +305,8 @@ motorRules.addRule(
 );
 motorRules.addRule(
   "Limit torque due to current limit",
-  (m) =>
-    !m.didLimitTorque && m.torque !== undefined && m.currentLimit !== undefined,
-  (m) => {
+  (m: any) => !m.didLimitTorque && m.torque !== undefined && m.currentLimit !== undefined,
+  (m: any) => {
     m.torque = Measurement.min(
       m.torque,
       m.currentLimit.mul(m.motor.kT)
@@ -298,11 +318,10 @@ motorRules.addRule(
 );
 motorRules.addRule(
   "Limit current due to current limit",
-  (m) =>
-    !m.didLimitCurrent &&
-    m.current !== undefined &&
-    m.currentLimit !== undefined,
-  (m) => {
+  (m: any) => !m.didLimitCurrent &&
+  m.current !== undefined &&
+  m.currentLimit !== undefined,
+  (m: any) => {
     m.current = Measurement.min(m.current, m.currentLimit).forcePositive();
     m.didLimitCurrent = true;
   },
@@ -312,9 +331,8 @@ motorRules.addRule(
 
 motorRules.addRule(
   "Given voltage and rpm, calculate current",
-  (m) =>
-    m.voltage !== undefined && m.rpm !== undefined && m.current === undefined,
-  (m) => {
+  (m: any) => m.voltage !== undefined && m.rpm !== undefined && m.current === undefined,
+  (m: any) => {
     // V = IR + w * kE ; solve for I
     // V - w * kE = IR
     // (V - w * kE) / R = I
@@ -327,17 +345,16 @@ motorRules.addRule(
 
 motorRules.addRule(
   "Given rpm and torque, calculate power",
-  (m) => m.rpm !== undefined && m.torque !== undefined && m.power === undefined,
-  (m) => {
+  (m: any) => m.rpm !== undefined && m.torque !== undefined && m.power === undefined,
+  (m: any) => {
     m.power = m.rpm.mul(m.torque).removeRad().forcePositive();
   }
 );
 
 motorRules.addRule(
   "Given rpm and current, calculate voltage",
-  (m) =>
-    m.rpm !== undefined && m.current !== undefined && m.voltage === undefined,
-  (m) => {
+  (m: any) => m.rpm !== undefined && m.current !== undefined && m.voltage === undefined,
+  (m: any) => {
     m.voltage = m.current
       .mul(m.motor.resistance)
       .add(m.rpm.div(m.motor.kV))
@@ -347,11 +364,10 @@ motorRules.addRule(
 
 motorRules.addRule(
   "If voltage is too high and current is present, wipe the state",
-  (m) =>
-    m.voltage !== undefined &&
-    m.voltage.gt(nominalVoltage) &&
-    m.current !== undefined,
-  (m) => {
+  (m: any) => m.voltage !== undefined &&
+  m.voltage.gt(nominalVoltage) &&
+  m.current !== undefined,
+  (m: any) => {
     m.voltage = nominalVoltage;
     m.rpm = undefined;
     m.torque = undefined;
@@ -366,9 +382,8 @@ motorRules.addRule(
 
 motorRules.addRule(
   "Given voltage and current, calculate rpm",
-  (m) =>
-    m.current !== undefined && m.voltage !== undefined && m.rpm === undefined,
-  (m) => {
+  (m: any) => m.current !== undefined && m.voltage !== undefined && m.rpm === undefined,
+  (m: any) => {
     // V = IR + w * kE ; solve for w
     // V - IR = w * kE
     // w = (V - IR) / kE
@@ -381,8 +396,8 @@ motorRules.addRule(
 
 motorRules.addRule(
   "Given torque and power, calculate rpm",
-  (m) => m.torque !== undefined && m.power !== undefined && m.rpm === undefined,
-  (m) => {
+  (m: any) => m.torque !== undefined && m.power !== undefined && m.rpm === undefined,
+  (m: any) => {
     m.rpm = m.power
       .div(m.torque)
       .mul(new Measurement(1, "rad"))

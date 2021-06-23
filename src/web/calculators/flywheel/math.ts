@@ -12,12 +12,12 @@ import Ratio from "common/models/Ratio";
  * @param {Measurement} targetSpeed
  */
 export function calculateWindupTime(
-  momentOfInertia,
-  motorFreeSpeed,
-  motorStallTorque,
-  motorQuantity,
-  ratio,
-  targetSpeed
+  momentOfInertia: any,
+  motorFreeSpeed: any,
+  motorStallTorque: any,
+  motorQuantity: any,
+  ratio: any,
+  targetSpeed: any
 ) {
   if (motorQuantity === 0 || ratio.asNumber() === 0) {
     return new Measurement(0, "s");
@@ -48,12 +48,12 @@ export function calculateWindupTime(
  * @param {Measurement} targetSpeed
  */
 export function generateChartData(
-  momentOfInertia,
-  motorFreeSpeed,
-  motorStallTorque,
-  motorQuantity,
-  currentRatio,
-  targetSpeed
+  momentOfInertia: any,
+  motorFreeSpeed: any,
+  motorStallTorque: any,
+  motorQuantity: any,
+  currentRatio: any,
+  targetSpeed: any
 ) {
   const start = 0.25 * currentRatio.asNumber();
   const end = Math.max(
@@ -63,15 +63,14 @@ export function generateChartData(
   const n = 200;
   const step = (end - start) / n;
 
-  const getTimeForRatio = (ratio) =>
-    calculateWindupTime(
-      momentOfInertia,
-      motorFreeSpeed,
-      motorStallTorque,
-      motorQuantity,
-      ratio,
-      targetSpeed
-    );
+  const getTimeForRatio = (ratio: any) => calculateWindupTime(
+    momentOfInertia,
+    motorFreeSpeed,
+    motorStallTorque,
+    motorQuantity,
+    ratio,
+    targetSpeed
+  );
 
   let data = [];
   for (let i = start; i < end; i += step) {

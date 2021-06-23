@@ -2,6 +2,7 @@ import Model from "common/models/Model";
 
 class InvalidModel extends Model {
   constructor() {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 0.
     super();
   }
 }
@@ -15,6 +16,7 @@ describe("Model", () => {
     });
 
     test("fails on fromDict()", () => {
+      // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
       expect(() => InvalidModel.fromDict({})).toThrow(
         "All models must implement fromDict!"
       );
@@ -39,8 +41,12 @@ describe("Model", () => {
     const toDictFn = jest.fn((m) => ({ a: m.a, b: m.b }));
     const fromDictFn = jest.fn((obj) => new ValidModel(obj.a, obj.b));
 
+    // @ts-expect-error ts-migrate(2417) FIXME: Class static side 'typeof ValidModel' incorrectly ... Remove this comment to see the full error message
     class ValidModel extends Model {
-      constructor(a, b) {
+      a: any;
+      b: any;
+      constructor(a: any, b: any) {
+        // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 0.
         super();
         this.a = a;
         this.b = b;
@@ -49,7 +55,7 @@ describe("Model", () => {
         return toDictFn(this);
       }
 
-      static fromDict(obj) {
+      static fromDict(obj: any) {
         return fromDictFn(obj);
       }
     }

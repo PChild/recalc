@@ -41,5 +41,6 @@ export default new PageConfig({
     volume: new Measurement(1200, "ml"),
     compressor: new Compressor("VIAIR 90C (12v)"),
   },
+  // @ts-expect-error ts-migrate(6142) FIXME: Module 'web/calculators/pneumatics/Pneumatics' was... Remove this comment to see the full error message
   component: lazy(() => import("web/calculators/pneumatics/Pneumatics")),
 });

@@ -7,12 +7,14 @@ import BooleanInput from "../BooleanInput";
 describe("Boolean input", () => {
   test("Renders", () => {
     const { result } = renderHook(() => useState(true));
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     render(<BooleanInput stateHook={result.current} label="Label" />);
   });
 
   test("Checked on initially true", () => {
     const { result } = renderHook(() => useState(true));
     render(
+      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <BooleanInput stateHook={result.current} label="Label" inputId="input" />
     );
     expect(screen.getByLabelText("Label")).toBeChecked();
@@ -21,6 +23,7 @@ describe("Boolean input", () => {
   test("Checked on initially false", () => {
     const { result } = renderHook(() => useState(false));
     render(
+      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <BooleanInput stateHook={result.current} label="Label" inputId="input" />
     );
     expect(screen.getByLabelText("Label")).not.toBeChecked();
@@ -29,6 +32,7 @@ describe("Boolean input", () => {
   test("Changes when clicked", () => {
     const { result } = renderHook(() => useState(true));
     render(
+      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <BooleanInput stateHook={result.current} label="Label" inputId="input" />
     );
 

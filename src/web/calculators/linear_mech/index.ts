@@ -18,5 +18,6 @@ export default new PageConfig({
     ratio: new Ratio(2, Ratio.REDUCTION),
     efficiency: 100,
   },
+  // @ts-expect-error ts-migrate(6142) FIXME: Module 'web/calculators/linear_mech/LinearMech' wa... Remove this comment to see the full error message
   component: lazy(() => import("web/calculators/linear_mech/LinearMech")),
 });

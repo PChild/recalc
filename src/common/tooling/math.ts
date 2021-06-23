@@ -1,5 +1,7 @@
 import Measurement from "common/models/Measurement";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import maxBy from "lodash/maxBy";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import minBy from "lodash/minBy";
 
 /**
@@ -10,9 +12,10 @@ import minBy from "lodash/minBy";
  * @param {number} y2
  * @returns {function(*): *}
  */
+// @ts-expect-error ts-migrate(7031) FIXME: Binding element 'x1' implicitly has an 'any' type.
 export function fit([x1, y1], [x2, y2]) {
   const slope = (y2 - y1) / (x2 - x1);
-  return (x) => slope * (x - x2) + y2;
+  return (x: any) => slope * (x - x2) + y2;
 }
 
 /**
@@ -20,7 +23,7 @@ export function fit([x1, y1], [x2, y2]) {
  * @returns {Measurement}
  */
 export function measurementMin() {
-  return minBy(arguments, (q) => q.scalar);
+  return minBy(arguments, (q: any) => q.scalar);
 }
 
 /**
@@ -28,7 +31,7 @@ export function measurementMin() {
  * @returns {Measurement}
  */
 export function measurementMax() {
-  return maxBy(arguments, (q) => q.scalar);
+  return maxBy(arguments, (q: any) => q.scalar);
 }
 
 export const CIRCLE_RIGHT = new Measurement(0, "deg");
@@ -44,7 +47,7 @@ export const CIRCLE_DOWN_LEFT = new Measurement(315, "deg");
 /**
  * @param {Measurement} angle
  */
-export function cleanAngleInput(angle) {
+export function cleanAngleInput(angle: any) {
   const prevUnits = angle.units();
 
   if (angle.to("rad").scalar >= 90) {

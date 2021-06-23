@@ -19,5 +19,6 @@ export default new PageConfig({
     momentOfInertia: new Measurement(10, "lb in^2"),
     useCustomMOI: false,
   },
+  // @ts-expect-error ts-migrate(6142) FIXME: Module 'web/calculators/flywheel/Flywheel' was res... Remove this comment to see the full error message
   component: lazy(() => import("web/calculators/flywheel/Flywheel")),
 });

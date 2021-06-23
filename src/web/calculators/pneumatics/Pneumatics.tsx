@@ -1,5 +1,7 @@
 import Heading from "common/components/headings/Heading";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/inputs/CompressorInpu... Remove this comment to see the full error message
 import CompressorInput from "common/components/io/inputs/CompressorInput";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/inputs/QtyInput' was ... Remove this comment to see the full error message
 import { LabeledQtyInput } from "common/components/io/inputs/QtyInput";
 import TabularInput from "common/components/io/inputs/TabularInput";
 import { LabeledNumberOutput } from "common/components/io/outputs/NumberOutput";
@@ -55,18 +57,25 @@ export default function Pneumatics() {
   useEffect(() => {
     const { timeline: timeline_, dutyCycle: dutyCycle_ } =
       generatePressureTimeline([p1, p2, p3], volume, compressor);
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ x: number; y: any; }[]' is not... Remove this comment to see the full error message
     setChartData(timeline_);
 
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
     setDutyCycle(dutyCycle_.toFixed(1));
     // Kinda slow :(
     // setRecommendedTanks(getRecommendedTanks([p1, p2, p3]));
   }, [p1, p2, p3, volume, compressor]);
 
   return (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <>
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Metadata config={config} />
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <div className="columns">
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <div className="column">
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <Heading
             title={config.title}
             subtitle={`V${config.version}`}
@@ -84,6 +93,7 @@ export default function Pneumatics() {
               ]);
             }}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <TabularInput
             headers={[
               "",
@@ -123,6 +133,7 @@ export default function Pneumatics() {
               "period",
             ]}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyInput
             inputId="tankVolume"
             stateHook={[volume, setVolume]}
@@ -130,11 +141,14 @@ export default function Pneumatics() {
             label={"Tank Volume"}
             abbr={"KOP tank volume is 590 mL"}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <CompressorInput stateHook={[compressor, setCompressor]} />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledNumberOutput
             label={"Compressor Duty Cycle"}
             stateHook={[dutyCycle, setDutyCycle]}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <Graph
             options={PneumaticGraphConfig.options()}
             type="line"

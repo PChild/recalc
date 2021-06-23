@@ -1,8 +1,12 @@
 import Heading from "common/components/headings/Heading";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/inputs/MotorInput' wa... Remove this comment to see the full error message
 import { LabeledMotorInput } from "common/components/io/inputs/MotorInput";
 import { LabeledNumberInput } from "common/components/io/inputs/NumberInput";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/inputs/QtyInput' was ... Remove this comment to see the full error message
 import { LabeledQtyInput } from "common/components/io/inputs/QtyInput";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/inputs/RatioInput' wa... Remove this comment to see the full error message
 import { LabeledRatioInput } from "common/components/io/inputs/RatioInput";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'common/components/io/outputs/QtyOutput' wa... Remove this comment to see the full error message
 import { LabeledQtyOutput } from "common/components/io/outputs/QtyOutput";
 import Metadata from "common/components/Metadata";
 import Measurement from "common/models/Measurement";
@@ -83,6 +87,7 @@ export default function LinearMech() {
     setTimeToGoal(CalculateTimeToGoal(travelDistance, loadedSpeed_));
 
     setTimeToGoalChartData(
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ x: number; y: any; }[]' is not... Remove this comment to see the full error message
       generateTimeToGoalChartData(
         motor,
         travelDistance,
@@ -94,6 +99,7 @@ export default function LinearMech() {
     );
 
     setCurrentDrawChartData(
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '{ x: number; y: any; }[]' is not... Remove this comment to see the full error message
       generateCurrentDrawChartData(motor, spoolDiameter, load, ratio)
     );
 
@@ -101,8 +107,11 @@ export default function LinearMech() {
   }, [motor, travelDistance, spoolDiameter, load, ratio, efficiency]);
 
   return (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <>
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Metadata config={config} />
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Heading
         title={config.title}
         subtitle={`V${config.version}`}
@@ -122,43 +131,52 @@ export default function LinearMech() {
         }}
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <div className="columns">
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <div className="column">
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledMotorInput
             inputId="motors"
             label="Motors"
             stateHook={[motor, setMotor]}
             choices={Motor.choices}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyInput
             inputId="travelDistance"
             label="Travel distance"
             stateHook={[travelDistance, setTravelDistance]}
             choices={["in", "ft", "cm", "m"]}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyInput
             inputId="spoolDiameter"
             label="Spool diameter"
             stateHook={[spoolDiameter, setSpoolDiameter]}
             choices={["in", "cm"]}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyInput
             inputId="linearMechanismLoad"
             label="Load"
             stateHook={[load, setLoad]}
             choices={["lb", "kg", "g"]}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledRatioInput
             inputId="ratio"
             label="Ratio"
             stateHook={[ratio, setRatio]}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledNumberInput
             inputId="efficiency"
             label="Efficiency (%)"
             stateHook={[efficiency, setEfficiency]}
           />
 
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyOutput
             label="Unloaded Speed"
             stateHook={[unloadedSpeed, setUnloadedSpeed]}
@@ -166,6 +184,7 @@ export default function LinearMech() {
             precision={2}
           />
 
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyOutput
             label="Loaded Speed"
             stateHook={[loadedSpeed, setLoadedSpeed]}
@@ -173,12 +192,14 @@ export default function LinearMech() {
             precision={2}
           />
 
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyOutput
             label="Time to goal"
             stateHook={[timeToGoal, setTimeToGoal]}
             choices={["s"]}
             precision={3}
           />
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <LabeledQtyOutput
             label="Current draw"
             stateHook={[currentDraw, setCurrentDraw]}
@@ -186,7 +207,9 @@ export default function LinearMech() {
             precision={3}
           />
         </div>
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <div className="column">
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <Graph
             options={LinearMechGraphConfig.options()}
             type="line"

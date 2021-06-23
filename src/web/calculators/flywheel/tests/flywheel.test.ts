@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Flywheel' was resolved to '/home/justin... Remove this comment to see the full error message
 import Flywheel from "../Flywheel";
 
 const inputs = {
@@ -36,6 +37,7 @@ describe("Flywheel tests", () => {
   test("Should see initial state", () => {
     render(<Flywheel />);
 
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     expect(inputs.motor()).toHaveValue(1);
     expect(inputs.ratio()).toHaveValue(1);
     expect(inputs.targetSpeed()).toHaveValue(2000);
@@ -58,14 +60,17 @@ describe("Flywheel tests", () => {
     "%p Clearing any primary input results in base output state",
     (getInput) => {
       render(<Flywheel />);
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       userEvent.clear(getInput());
       expect(outputs.windupTime()).toHaveValue("0.000");
     }
   );
 
   test("Initial state should change with query string", () => {
+    // @ts-expect-error ts-migrate(2790) FIXME: The operand of a 'delete' operator must be optiona... Remove this comment to see the full error message
     delete global.window.location;
     global.window = Object.create(window);
+    // @ts-expect-error ts-migrate(2740) FIXME: Type '{ search: string; }' is missing the followin... Remove this comment to see the full error message
     global.window.location = {
       search:
         "?momentOfInertia=%7B%22s%22%3A45%2C%22u%22%3A%22lbs" +
@@ -77,6 +82,7 @@ describe("Flywheel tests", () => {
     };
 
     render(<Flywheel />);
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     expect(inputs.motor()).toHaveValue(3);
     expect(inputs.ratio()).toHaveValue(2);
     expect(inputs.targetSpeed()).toHaveValue(10000);
@@ -88,8 +94,10 @@ describe("Flywheel tests", () => {
   });
 
   test("Initial state should change with query string with custom MOI", () => {
+    // @ts-expect-error ts-migrate(2790) FIXME: The operand of a 'delete' operator must be optiona... Remove this comment to see the full error message
     delete global.window.location;
     global.window = Object.create(window);
+    // @ts-expect-error ts-migrate(2740) FIXME: Type '{ search: string; }' is missing the followin... Remove this comment to see the full error message
     global.window.location = {
       search:
         "?momentOfInertia=%7B%22s%22%3A80%2C%22u%22%3A%22lbs%2Ain" +
@@ -101,6 +109,7 @@ describe("Flywheel tests", () => {
     };
 
     render(<Flywheel />);
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     expect(inputs.motor()).toHaveValue(2);
     expect(inputs.motor()).toBeEnabled();
     expect(inputs.ratio()).toHaveValue(1.5);

@@ -13,21 +13,21 @@ import Measurement from "common/models/Measurement";
 import Motor from "common/models/Motor";
 import Ratio from "common/models/Ratio";
 
-function generateFailure(msg) {
+function generateFailure(msg: any) {
   return {
     pass: false,
     message: () => msg,
   };
 }
 
-function generateSuccess(msg) {
+function generateSuccess(msg: any) {
   return {
     pass: true,
     message: () => msg,
   };
 }
 
-function validateInstanceOf(obj, cls) {
+function validateInstanceOf(obj: any, cls: any) {
   if (!(obj instanceof cls)) {
     return generateFailure(`Expected ${obj} to be an instanceof ${cls.name}`);
   } else {
@@ -37,7 +37,7 @@ function validateInstanceOf(obj, cls) {
   }
 }
 
-function validateMeasurementInstances(received, measurement) {
+function validateMeasurementInstances(received: any, measurement: any) {
   const validateReceived = validateInstanceOf(received, Measurement);
   if (!validateReceived.pass) {
     return validateReceived;
@@ -57,7 +57,7 @@ function validateMeasurementInstances(received, measurement) {
   return null;
 }
 
-function validateMotorInstance(received, motor) {
+function validateMotorInstance(received: any, motor: any) {
   const validateReceived = validateInstanceOf(received, Motor);
   if (!validateReceived.pass) {
     return validateReceived;
@@ -71,7 +71,7 @@ function validateMotorInstance(received, motor) {
   return null;
 }
 
-function validateRatioInstance(received, ratio) {
+function validateRatioInstance(received: any, ratio: any) {
   const validateReceived = validateInstanceOf(received, Ratio);
   if (!validateReceived.pass) {
     return validateReceived;

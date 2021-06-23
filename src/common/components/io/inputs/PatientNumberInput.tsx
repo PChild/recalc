@@ -1,9 +1,16 @@
 import { toolTipForIds } from "common/components/tooltips";
 import { uuid } from "common/tooling/util";
-import propTypes from "prop-types";
 import { useEffect, useState } from "react";
 
-export function UnlabeledPatientNumberInput(props) {
+type UnlabeledPatientNumberInputProps = {
+    stateHook?: any[];
+    inputId?: string;
+    children?: any;
+    delay?: number;
+};
+
+export function UnlabeledPatientNumberInput(props: UnlabeledPatientNumberInputProps) {
+  // @ts-expect-error ts-migrate(2461) FIXME: Type 'any[] | undefined' is not an array type.
   const [value, setValue] = props.stateHook;
   const [preValue, setPreValue] = useState(value);
 
@@ -13,8 +20,11 @@ export function UnlabeledPatientNumberInput(props) {
   }, [preValue]);
 
   return (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <div className="field has-addons">
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <p className="control is-expanded">
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <input
           type="number"
           className="input input-right"
@@ -28,37 +38,36 @@ export function UnlabeledPatientNumberInput(props) {
   );
 }
 
-UnlabeledPatientNumberInput.propTypes = {
-  stateHook: propTypes.arrayOf(propTypes.any, propTypes.func),
-  inputId: propTypes.string,
-  children: propTypes.any,
-  delay: propTypes.number,
+type LabeledPatientNumberInputProps = {
+    stateHook?: any[];
+    label?: string;
+    inputId?: string;
+    delay?: number;
 };
 
-export function LabeledPatientNumberInput(props) {
+export function LabeledPatientNumberInput(props: LabeledPatientNumberInputProps) {
   props = { ...props, inputId: props.inputId || uuid() };
   return (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <div className="field is-horizontal">
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <div className="field-label is-normal">
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <span
           className="has-tooltip-right"
           data-tooltip={toolTipForIds(props.inputId, props.label)}
         >
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <label className="label" htmlFor={props.inputId}>
             {props.label}
           </label>
         </span>
       </div>
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <div className="field-body">
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <UnlabeledPatientNumberInput {...props} />
       </div>
     </div>
   );
 }
-
-LabeledPatientNumberInput.propTypes = {
-  stateHook: propTypes.arrayOf(propTypes.any, propTypes.func),
-  label: propTypes.string,
-  inputId: propTypes.string,
-  delay: propTypes.number,
-};

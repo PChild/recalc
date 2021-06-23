@@ -1,4 +1,4 @@
-export function cleanNumberInput(value) {
+export function cleanNumberInput(value: any) {
   let val = NaN;
   switch (value) {
     case ".":

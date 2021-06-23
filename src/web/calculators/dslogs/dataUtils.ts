@@ -1,3 +1,3 @@
-export function decimate(data, precision) {
-  return data.filter((_, i) => i % precision === 0);
+export function decimate(data: any, precision: any) {
+  return data.filter((_: any, i: any) => i % precision === 0);
 }

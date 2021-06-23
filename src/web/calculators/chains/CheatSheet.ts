@@ -1,7 +1,7 @@
 import { teethToPD } from "./math";
 
 export default function CheatSheet() {
-  const Pulley = (vendor, chain, teeth, bore, wrong = false) => {
+  const Pulley = (vendor: any, chain: any, teeth: any, bore: any, wrong = false) => {
     return {
       vendor,
       chain,
@@ -64,47 +64,65 @@ export default function CheatSheet() {
     Pulley("VEXPro, WCP, AndyMark", "#35", 60, '1-1/8" Bearing Bore'),
   ];
 
-  return (
-    <>
-      <table className="table is-hoverable is-narrow">
-        <thead>
-          <tr>
-            <th>Vendor</th>
-            <th>Chain</th>
-            <th>Teeth</th>
-            <th>Bore</th>
-            <th>
-              <abbr title="Pitch Diameter">PD</abbr>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((pulley) => {
-            let pdText = <>{pulley.pd}&quot;</>;
-            if (pulley.wrong) {
-              pdText = <i>{pdText}</i>;
-            }
+  return <>
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'table'.
+    <table className="table is-hoverable is-narrow">
+      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'thead'.
+      <thead>
+        // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'tr'.
+        <tr>
+          // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'th'.
+          <th>Vendor</th>
+          // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'th'.
+          <th>Chain</th>
+          // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'th'.
+          <th>Teeth</th>
+          // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'th'.
+          <th>Bore</th>
+          // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'th'.
+          <th>
+            // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'abbr'.
+            <abbr title="Pitch Diameter">PD</abbr>
+          </th>
+        </tr>
+      </thead>
+      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'tbody'.
+      <tbody>
+        {data.map((pulley: any) => {
+          // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'quot'.
+          let pdText = <>{pulley.pd}&quot;</>;
+          if (pulley.wrong) {
+            // @ts-expect-error ts-migrate(2322) FIXME: Type 'boolean' is not assignable to type 'number'.
+            pdText = <i>{pdText}</i>;
+          }
 
-            return (
-              <tr
-                key={
-                  pulley.vendor +
-                  pulley.teeth +
-                  pulley.bore +
-                  pulley.type +
-                  pulley.chain
-                }
-              >
-                <td>{pulley.vendor}</td>
-                <td>{pulley.chain}</td>
-                <td>{pulley.teeth}T</td>
-                <td>{pulley.bore}</td>
-                <td>{pdText}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </>
-  );
+          return (
+            // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'tr'.
+            <tr
+              // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'key'.
+              key={
+                pulley.vendor +
+                pulley.teeth +
+                pulley.bore +
+                pulley.type +
+                pulley.chain
+              }
+            >
+              // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'td'.
+              <td>{pulley.vendor}</td>
+              // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'td'.
+              <td>{pulley.chain}</td>
+              // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'td'.
+              <td>{pulley.teeth}T</td>
+              // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'td'.
+              <td>{pulley.bore}</td>
+              // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'td'.
+              <td>{pdText}</td>
+            </tr>
+          );
+        })}
+      // @ts-expect-error ts-migrate(2365) FIXME: Operator '<' cannot be applied to types 'boolean' ... Remove this comment to see the full error message
+      </tbody>
+    </table>
+  </>;
 }

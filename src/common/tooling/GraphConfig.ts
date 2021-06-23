@@ -1,10 +1,11 @@
 import { isLocalhost } from "common/tooling/util";
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'exports.module.scss' or its co... Remove this comment to see the full error message
 import styles from "exports.module.scss";
 
 const chartColors = styles.chart_colors.split(isLocalhost() ? ", " : ",");
 
 export class GraphConfig {
-  static options(scales, title) {
+  static options(scales: any, title: any) {
     return {
       scales: scales,
       elements: {
@@ -38,11 +39,16 @@ export class GraphConfig {
     };
   }
 
-  static chartColor(index) {
+  static chartColor(index: any) {
     return chartColors[index];
   }
 
-  static dataset({ label, data, colorIndex, id }) {
+  static dataset({
+    label,
+    data,
+    colorIndex,
+    id
+  }: any) {
     return {
       label: label,
       data: data,

@@ -1,5 +1,10 @@
 class Rule {
-  constructor(name, conditionFn, modifyFn, haltAfter, priority) {
+  conditionFn: any;
+  haltAfter: any;
+  modifyFn: any;
+  name: any;
+  priority: any;
+  constructor(name: any, conditionFn: any, modifyFn: any, haltAfter: any, priority: any) {
     this.name = name;
     this.conditionFn = conditionFn;
     this.modifyFn = modifyFn;
@@ -9,23 +14,24 @@ class Rule {
 }
 
 export default class Rules {
+  rules: any;
   constructor() {
     this.rules = [];
   }
 
-  addRule(name, conditionFn, modifyFn, haltAfter = false, priority = 0) {
+  addRule(name: any, conditionFn: any, modifyFn: any, haltAfter = false, priority = 0) {
     this.rules.push(new Rule(name, conditionFn, modifyFn, haltAfter, priority));
-    this.rules.sort((a, b) => b.priority - a.priority);
+    this.rules.sort((a: any, b: any) => b.priority - a.priority);
   }
 
-  solve(source, iterationLimit = 100) {
+  solve(source: any, iterationLimit = 100) {
     let runLoop = true;
     let i = 0;
 
     while (runLoop && i <= iterationLimit) {
       let runForEach = true;
       // console.log('-----');
-      this.rules.forEach((rule) => {
+      this.rules.forEach((rule: any) => {
         if (!runForEach) {
           return;
         }

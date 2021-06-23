@@ -1,4 +1,4 @@
-export function defaultAssignment(query, queryParams) {
+export function defaultAssignment(query: any, queryParams: any) {
   const r = {};
   Object.keys(query).forEach((k) => {
     if (k !== "version") {

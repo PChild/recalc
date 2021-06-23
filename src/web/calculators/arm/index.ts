@@ -21,5 +21,6 @@ export default new PageConfig({
     endAngle: CIRCLE_UP.to("deg"),
     iterationLimit: 10000,
   },
+  // @ts-expect-error ts-migrate(6142) FIXME: Module 'web/calculators/arm/Arm' was resolved to '... Remove this comment to see the full error message
   component: lazy(() => import("web/calculators/arm/Arm")),
 });

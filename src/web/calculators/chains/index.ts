@@ -15,5 +15,6 @@ export default new PageConfig({
     desiredCenter: new Measurement(5, "in"),
     extraCenter: new Measurement(0, "in"),
   },
+  // @ts-expect-error ts-migrate(6142) FIXME: Module 'web/calculators/chains/Chains' was resolve... Remove this comment to see the full error message
   component: lazy(() => import("web/calculators/chains/Chains")),
 });

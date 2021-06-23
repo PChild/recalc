@@ -1,7 +1,7 @@
 import ShareButton from "common/components/headings/ShareButton";
 import propTypes from "prop-types";
 
-export default function Heading(props) {
+export default function Heading(props: any) {
   return (
     <nav className="level">
       <div className="level-item has-text-centered">
@@ -9,7 +9,6 @@ export default function Heading(props) {
           <p className="title">{props.title}</p>
         </div>
       </div>
-
       <div className="level-item has-text-centered">
         <div className="field has-addons">
           <p className="control">

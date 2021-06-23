@@ -1,10 +1,14 @@
 import Model from "common/models/Model";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import keyBy from "lodash/keyBy";
 
 import Measurement from "./Measurement";
 
+// @ts-expect-error ts-migrate(2417) FIXME: Class static side 'typeof Material' incorrectly ex... Remove this comment to see the full error message
 export default class Material extends Model {
-  constructor(name) {
+  mechanical: any;
+  name: any;
+  constructor(name: any) {
     super(name, materialMap);
   }
 
@@ -14,7 +18,7 @@ export default class Material extends Model {
     };
   }
 
-  static fromDict(dict) {
+  static fromDict(dict: any) {
     return new Material(dict.name);
   }
 
@@ -42,6 +46,22 @@ export default class Material extends Model {
 }
 
 class MechanicalProperties {
+  brinellHardness: any;
+  density: any;
+  elongationAtBreak: any;
+  fatigueStrength: any;
+  flexuralModulus: any;
+  flexuralStrength: any;
+  impactCharpy: any;
+  impactNotchedIzod: any;
+  poissonsRatio: any;
+  rockwellMHardness: any;
+  shearModulus: any;
+  shearStrength: any;
+  tensileModulus: any;
+  tensileStrengthBreak: any;
+  tensileStrengthUltimate: any;
+  tensileStrengthYield: any;
   constructor({
     brinellHardness,
     rockwellMHardness,
@@ -58,8 +78,8 @@ class MechanicalProperties {
     flexuralModulus,
     flexuralStrength,
     impactNotchedIzod,
-    impactCharpy,
-  } = {}) {
+    impactCharpy
+  }: any = {}) {
     this.brinellHardness = brinellHardness;
     this.rockwellMHardness = rockwellMHardness;
     this.tensileModulus = tensileModulus;
@@ -80,6 +100,15 @@ class MechanicalProperties {
 }
 
 class ThermalProperties {
+  glassTransitionTemperature: any;
+  heatDeflectionAt66Psi: any;
+  latentHeatOfFusion: any;
+  maximumTemperatureMechanical: any;
+  meltingCompletion: any;
+  meltingOnset: any;
+  specificHeatCapacity: any;
+  thermalConductivity: any;
+  thermalExpansion: any;
   constructor({
     latentHeatOfFusion,
     maximumTemperatureMechanical,
@@ -89,8 +118,8 @@ class ThermalProperties {
     thermalConductivity,
     thermalExpansion,
     heatDeflectionAt66Psi,
-    glassTransitionTemperature,
-  } = {}) {
+    glassTransitionTemperature
+  }: any = {}) {
     this.latentHeatOfFusion = latentHeatOfFusion;
     this.maximumTemperatureMechanical = maximumTemperatureMechanical;
     this.meltingCompletion = meltingCompletion;
@@ -103,18 +132,16 @@ class ThermalProperties {
   }
 }
 
-const GPa = (n) => new Measurement(n, "GPa");
-const MPa = (n) => new Measurement(n, "MPa");
-const gcm3 = (n) => new Measurement(n, "g/cm3");
-const Jg = (n) => new Measurement(n, "J/g");
-const C = (n) => new Measurement(n, "celsius");
-const JkgK = (n) =>
-  new Measurement(n, "J ").div(new Measurement(1, "kg * degK"));
-const WmK = (n) => new Measurement(n, "W").div(new Measurement(1, "m * degK"));
-const ummK = (n) =>
-  new Measurement(n, "micrometers").div(new Measurement(1, "m * degK"));
-const Jm = (n) => new Measurement(n, "J/m");
-const kJm2 = (n) => new Measurement(n, "kJ").div(new Measurement(1, "m^2"));
+const GPa = (n: any) => new Measurement(n, "GPa");
+const MPa = (n: any) => new Measurement(n, "MPa");
+const gcm3 = (n: any) => new Measurement(n, "g/cm3");
+const Jg = (n: any) => new Measurement(n, "J/g");
+const C = (n: any) => new Measurement(n, "celsius");
+const JkgK = (n: any) => new Measurement(n, "J ").div(new Measurement(1, "kg * degK"));
+const WmK = (n: any) => new Measurement(n, "W").div(new Measurement(1, "m * degK"));
+const ummK = (n: any) => new Measurement(n, "micrometers").div(new Measurement(1, "m * degK"));
+const Jm = (n: any) => new Measurement(n, "J/m");
+const kJm2 = (n: any) => new Measurement(n, "kJ").div(new Measurement(1, "m^2"));
 
 export const materialMap = keyBy(
   [

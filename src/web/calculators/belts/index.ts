@@ -19,5 +19,6 @@ export default new PageConfig({
     useCustomBelt: false,
     customBeltTeeth: 125,
   },
+  // @ts-expect-error ts-migrate(6142) FIXME: Module 'web/calculators/belts/Belts' was resolved ... Remove this comment to see the full error message
   component: lazy(() => import("web/calculators/belts/Belts")),
 });

@@ -2,7 +2,10 @@ import { parse, stringify } from "query-string";
 import { encodeQueryParams } from "use-query-params";
 
 export class QueryableParamHolder {
-  constructor(state, paramType) {
+  name: any;
+  paramType: any;
+  value: any;
+  constructor(state: any, paramType: any) {
     this.paramType = paramType;
     this.name = Object.keys(state)[0];
     this.value = state[this.name];
@@ -14,12 +17,18 @@ export class QueryableParamHolder {
  * @param {QueryableParamHolder[]} queryableParamHolders
  * @return {string}
  */
-export function stateToQueryString(queryableParamHolders) {
+export function stateToQueryString(queryableParamHolders: any) {
   const queryParams = Object.assign(
-    ...queryableParamHolders.map((qph) => ({ [qph.name]: qph.paramType }))
+    // @ts-expect-error ts-migrate(2557) FIXME: Expected at least 1 arguments, but got 0 or more.
+    ...queryableParamHolders.map((qph: any) => ({
+      [qph.name]: qph.paramType
+    }))
   );
   const queryValues = Object.assign(
-    ...queryableParamHolders.map((qph) => ({ [qph.name]: qph.value }))
+    // @ts-expect-error ts-migrate(2557) FIXME: Expected at least 1 arguments, but got 0 or more.
+    ...queryableParamHolders.map((qph: any) => ({
+      [qph.name]: qph.value
+    }))
   );
   return stringify(encodeQueryParams(queryParams, queryValues));
 }
@@ -29,16 +38,16 @@ export function stateToQueryString(queryableParamHolders) {
  * @param {string} queryString
  * @returns {string}
  */
-export function buildUrlForCurrentPage(queryString) {
+export function buildUrlForCurrentPage(queryString: any) {
   const base = window.location.origin + window.location.pathname;
   return `${base}?${queryString}`;
 }
 
 export function queryStringToDefaults(
-  query,
-  queryParams,
-  defaults,
-  conversionFn
+  query: any,
+  queryParams: any,
+  defaults: any,
+  conversionFn: any
 ) {
   const strings = parse(query);
 

@@ -8,5 +8,6 @@ export default new PageConfig({
   initialState: {},
   version: 0,
   title: "Compressor Info",
+  // @ts-expect-error ts-migrate(6142) FIXME: Module 'web/compressors/Compressors' was resolved ... Remove this comment to see the full error message
   component: lazy(() => import("web/compressors/Compressors")),
 });

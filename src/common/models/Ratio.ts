@@ -1,6 +1,9 @@
 import Model from "common/models/Model";
 
+// @ts-expect-error ts-migrate(2417) FIXME: Class static side 'typeof Ratio' incorrectly exten... Remove this comment to see the full error message
 export default class Ratio extends Model {
+  magnitude: any;
+  ratioType: any;
   static get REDUCTION() {
     return "Reduction";
   }
@@ -13,7 +16,8 @@ export default class Ratio extends Model {
    * @param {number} magnitude - Magnitude of the ratio
    * @param {string} ratioType - Either "Reduction" or "Step-up"
    */
-  constructor(magnitude, ratioType = Ratio.REDUCTION) {
+  constructor(magnitude: any, ratioType = Ratio.REDUCTION) {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 0.
     super();
     this.magnitude = magnitude;
     this.ratioType = ratioType;
@@ -46,11 +50,11 @@ export default class Ratio extends Model {
     };
   }
 
-  static fromDict(dict) {
+  static fromDict(dict: any) {
     return new Ratio(dict.magnitude, dict.ratioType);
   }
 
-  eq(other) {
+  eq(other: any) {
     if (!(other instanceof Ratio)) {
       return false;
     }

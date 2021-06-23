@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Chains' was resolved to '/home/justin/c... Remove this comment to see the full error message
 import Chains from "../Chains";
 
 const inputs = {
@@ -39,6 +40,7 @@ describe("Chain calculator", () => {
   test("Should see initial state", () => {
     render(<Chains />);
 
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     expect(secondaryInputs.chain()).toHaveValue("#25");
     expect(inputs.desiredCenter()).toHaveValue(5);
     expect(secondaryInputs.extraCenter()).toHaveValue(0);
@@ -57,6 +59,7 @@ describe("Chain calculator", () => {
     "%p changing any primary input results in base output state",
     (getInput) => {
       render(<Chains />);
+      // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
       userEvent.clear(getInput());
 
       expect(outputs.smallerCenterDistance()).toHaveValue("0.0000");
@@ -69,6 +72,7 @@ describe("Chain calculator", () => {
   test("Changing chain pitch changes outputs", () => {
     render(<Chains />);
 
+    // @ts-expect-error ts-migrate(2769) FIXME: No overload matches this call.
     userEvent.selectOptions(screen.getByTestId("chainInput"), ["#35"]);
 
     expect(secondaryInputs.chain()).toHaveValue("#35");

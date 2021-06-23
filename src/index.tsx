@@ -2,6 +2,7 @@ import "index.scss";
 
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
+// @ts-expect-error ts-migrate(6142) FIXME: Module 'App' was resolved to '/home/justin/code/re... Remove this comment to see the full error message
 import App from "App";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
@@ -26,7 +27,9 @@ if (
 }
 
 ReactDOM.render(
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   <StrictMode>
+    {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
     <App />
   </StrictMode>,
   document.getElementById("root")

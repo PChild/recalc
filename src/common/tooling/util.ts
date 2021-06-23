@@ -1,5 +1,6 @@
 import Motor from "common/models/Motor";
 import Ratio from "common/models/Ratio";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import { isObjectLike } from "lodash";
 
 import Measurement from "../models/Measurement";
@@ -31,9 +32,11 @@ export const uuid = () =>
 
 export const constructors = [Motor, Ratio, Measurement];
 
-export const objectify = (obj) => {
+// @ts-expect-error ts-migrate(7024) FIXME: Function implicitly has return type 'any' because ... Remove this comment to see the full error message
+export const objectify = (obj: any) => {
   if (obj instanceof Model) {
     return {
+      // @ts-expect-error ts-migrate(2698) FIXME: Spread types may only be created from object types... Remove this comment to see the full error message
       ...obj.toDict(),
       constructorId: constructors.indexOf(obj.constructor),
     };
@@ -51,7 +54,8 @@ export const objectify = (obj) => {
   }
 };
 
-export const unobjectify = (obj) => {
+// @ts-expect-error ts-migrate(7024) FIXME: Function implicitly has return type 'any' because ... Remove this comment to see the full error message
+export const unobjectify = (obj: any) => {
   if (Object.prototype.hasOwnProperty.call(obj, "constructorId")) {
     return constructors[obj.constructorId].fromDict(obj);
   } else if (Array.isArray(obj)) {
@@ -68,6 +72,6 @@ export const unobjectify = (obj) => {
   }
 };
 
-export const fixFloatingPoint = (n) => {
+export const fixFloatingPoint = (n: any) => {
   return Number(n.toFixed(12));
 };

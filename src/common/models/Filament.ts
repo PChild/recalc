@@ -1,5 +1,6 @@
 import Measurement from "common/models/Measurement";
 import Model from "common/models/Model";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'loda... Remove this comment to see the full error message
 import keyBy from "lodash/keyBy";
 
 export default class Filament extends Model {
@@ -7,7 +8,7 @@ export default class Filament extends Model {
    *
    * @param {string} name The brand name of the filament.
    */
-  constructor(name) {
+  constructor(name: any) {
     super(name, filamentMap);
   }
 
