@@ -1,10 +1,10 @@
 {
   "name": "recalc",
-  "version": "1.26.1",
+  "version": "1.26.2",
   "license": "MIT",
   "dependencies": {
     "@creativebulma/bulma-tooltip": "^1.2.0",
-    "@sentry/react": "^6.8.0",
+    "@sentry/react": "^6.11.0",
     "@sentry/tracing": "^6.8.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
