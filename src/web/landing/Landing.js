@@ -5,6 +5,7 @@ import chains from "web/calculators/chains";
 // import dslogs from "web/calculators/dslogs";
 import flywheel from "web/calculators/flywheel";
 import linear from "web/calculators/linear_mech";
+import intake from "web/calculators/intake";
 import gearload from "web/calculators/load";
 import pneumatics from "web/calculators/pneumatics";
 import compressors from "web/compressors";
@@ -80,6 +81,9 @@ export default function Landing() {
               title={gearload.title}
               image={gearload.image}
             />
+          </div>
+          <div className="column is-half">
+            <Tile to={intake.url} title={intake.title} image={intake.image} />
           </div>
         </div>
       </section>

@@ -9,6 +9,7 @@ import belts from "web/calculators/belts";
 import chains from "web/calculators/chains";
 import dslogs from "web/calculators/dslogs";
 import flywheel from "web/calculators/flywheel";
+import intake from "web/calculators/intake";
 import linear from "web/calculators/linear_mech";
 import gearload from "web/calculators/load";
 import pneumatics from "web/calculators/pneumatics";
@@ -37,6 +38,7 @@ export default function App() {
               <Route path={flywheel.url} component={flywheel.component} />
               <Route path={pneumatics.url} component={pneumatics.component} />
               <Route path={linear.url} component={linear.component} />
+              <Route path={intake.url} component={intake.component} />
               <Route path={chains.url} component={chains.component} />
               <Route path={arm.url} component={arm.component} />
               <Route path={gearload.url} component={gearload.component} />

@@ -18,6 +18,9 @@ export default {
   iterationLimit:
     "The number of iterations the solver will try before returning.",
   travelDistance: "How far this mechanism is moving.",
+  rollerDiameter: "Outer diameter of the intake rollers or wheels.",
+  intakeSides: "Sides of the game piece touching a powered roller (1 or 2).",
+  dragLoad: "Load as game pieces are pulled through the intake",
   spoolDiameter:
     "Diameter of the spool driving this mechanism. For rack and pinion systems, the diametric pitch of the pinion.",
   linearMechanismLoad:
